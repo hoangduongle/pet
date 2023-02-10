@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/route/app_routes.dart';
 
 class PetAdoptScreen extends StatefulWidget {
   const PetAdoptScreen({super.key});
@@ -59,10 +61,16 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                       Material(
                         elevation: 5,
                         borderRadius: BorderRadius.circular(50.r),
-                        child: Container(
-                          width: 68.w,
-                          height: 68.h,
-                          decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(50.r),
+                          onTap: () {
+                            Get.toNamed(Routes.PETADOPTDETAIL);
+                          },
+                          child: Container(
+                            width: 68.w,
+                            height: 68.h,
+                            decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                          ),
                         ),
                       ),
                       Padding(
@@ -79,7 +87,7 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
               child: Text(
                 "Thú cưng cần được bạn nhận nuôi nè",
                 style: GoogleFonts.roboto(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(0xff656565),
                 )),
@@ -88,7 +96,7 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
             Container(
               color: Colors.white,
               width: 370.w,
-              height: 424.h,
+              height: 359.h,
               child: GridView.builder(
                 itemCount: 6,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20.w, mainAxisSpacing: 20.h, mainAxisExtent: 260.h),
@@ -97,54 +105,59 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                     elevation: 5,
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20.r),
-                    child: Column(
-                      children: [
-                        ClipRRect(borderRadius: BorderRadius.only(topLeft: Radius.circular(20.r), topRight: Radius.circular(20.r)), child: Image.asset('assets/png/cat.png')),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15.w, top: 10.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Mèo Anh lông dài',
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                  color: Color(0xffFF7A00),
-                                  fontWeight: FontWeight.bold,
-                                )),
-                              ),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Text(
-                                "Tuổi: 16 tháng",
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                  color: Color(0xff535F60),
-                                  fontSize: 13.sp,
-                                )),
-                              ),
-                              Text(
-                                "Chủ không còn khả năng nuôi",
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                  color: Color(0xff535F60),
-                                  fontSize: 13.sp,
-                                )),
-                              ),
-                              Text(
-                                "Liên hệ: 0325434343",
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                  color: Color(0xff535F60),
-                                  fontSize: 13.sp,
-                                )),
-                              ),
-                              //
-                            ],
-                          ),
-                        )
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.PETINFO);
+                      },
+                      child: Column(
+                        children: [
+                          ClipRRect(borderRadius: BorderRadius.only(topLeft: Radius.circular(20.r), topRight: Radius.circular(20.r)), child: Image.asset('assets/png/cat.png')),
+                          Padding(
+                            padding: EdgeInsets.only(left: 15.w, top: 10.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Mèo Anh lông dài',
+                                  style: GoogleFonts.roboto(
+                                      textStyle: TextStyle(
+                                    color: Color(0xffFF7A00),
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                Text(
+                                  "Tuổi: 16 tháng",
+                                  style: GoogleFonts.roboto(
+                                      textStyle: TextStyle(
+                                    color: Color(0xff535F60),
+                                    fontSize: 13.sp,
+                                  )),
+                                ),
+                                Text(
+                                  "Chủ không còn khả năng nuôi",
+                                  style: GoogleFonts.roboto(
+                                      textStyle: TextStyle(
+                                    color: Color(0xff535F60),
+                                    fontSize: 13.sp,
+                                  )),
+                                ),
+                                Text(
+                                  "Liên hệ: 0325434343",
+                                  style: GoogleFonts.roboto(
+                                      textStyle: TextStyle(
+                                    color: Color(0xff535F60),
+                                    fontSize: 13.sp,
+                                  )),
+                                ),
+                                //
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/route/app_routes.dart';
+import 'package:pets/app/widget/button.dart';
+
+import '../../../widget/SizedBoxWidget.dart';
 
 class WellcomeScreen extends StatefulWidget {
   const WellcomeScreen({super.key});
@@ -44,60 +47,22 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
           SizedBox(
             height: 70.h,
           ),
-          SizedBox(
-            width: 368.w,
-            height: 45,
-            child: Material(
-              color: const Color(0xffFF7A00),
-              borderRadius: BorderRadius.circular(15.r),
-              child: InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.LOGIN);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Đăng nhập',
-                      style: GoogleFonts.montserrat(textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp, color: Colors.white)),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          Button(
+            text: 'Đăng nhập',
+            outLine: false,
+            ontap: () {
+              Get.toNamed(Routes.LOGIN);
+            },
           ),
-          SizedBox(
-            height: 30.h,
+          SizedBoxWidget(
+            height: 30,
           ),
-          SizedBox(
-            width: 368.w,
-            height: 45.h,
-            child: Container(
-              padding: EdgeInsets.all(1.r),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.r),
-                color: const Color(0xffFF7A00),
-              ),
-              child: Material(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15.r),
-                child: InkWell(
-                  focusColor: const Color(0xffFF7A00),
-                  onTap: () {
-                    Get.toNamed(Routes.REGISTER);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Đăng ký',
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp, color: const Color(0xffFF7A00)),
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+          Button(
+            text: 'Đăng ký',
+            outLine: true,
+            ontap: () {
+              Get.toNamed(Routes.REGISTER);
+            },
           ),
         ],
       ),

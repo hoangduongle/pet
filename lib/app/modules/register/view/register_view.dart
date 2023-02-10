@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/widget/button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -62,29 +63,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(
               height: 10.h,
             ),
-            SizedBox(
-              width: 368.w,
-              height: 45,
-              child: Material(
-                color: const Color(0xffFF7A00),
-                borderRadius: BorderRadius.circular(15.r),
-                child: InkWell(
-                  onTap: () {
-                    var phoneNumber = phoneNumberController.text;
-                    var pwd = pwdController.text;
-                    print('SDT:$phoneNumber PWD:$pwd');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Đăng ký',
-                        style: GoogleFonts.montserrat(textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp, color: Colors.white)),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            Button(
+              height: 55,
+              text: 'Đăng ký',
+              outLine: false,
+              ontap: () {
+                var phoneNumber = phoneNumberController.text;
+                var pwd = pwdController.text;
+                var repwd = rePwdController.text;
+                print('SDT:$phoneNumber PWD:$pwd RePwd: $repwd');
+              },
             ),
             SizedBox(
               height: 30.h,

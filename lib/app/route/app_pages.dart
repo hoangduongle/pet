@@ -2,9 +2,13 @@
 
 import 'package:get/get.dart';
 import 'package:pets/app/modules/adopt/view/adopt_view.dart';
+import 'package:pets/app/modules/main/view/main_view.dart';
 import 'package:pets/app/modules/petadopt/view/petadopt_view.dart';
+import 'package:pets/app/modules/petadoptDetail/view/petadoptDetail_view.dart';
+import 'package:pets/app/modules/petinfo/view/petinfo_view.dart';
 import 'package:pets/app/modules/petowner/view/petowner_view.dart';
 import 'package:pets/app/modules/register/view/register_view.dart';
+import 'package:pets/app/modules/serivce/view/service_view.dart';
 import 'package:pets/app/modules/wellcome/view/wellcome_view.dart';
 import 'package:pets/app/route/app_routes.dart';
 
@@ -37,6 +41,11 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage(
+      name: '/main',
+      page: () => MainScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
       name: '/adopt',
       page: () => AdoptScreen(),
       transition: Transition.rightToLeft,
@@ -47,8 +56,23 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage(
+      name: '/petinfo',
+      page: () => PetInfoScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: '/petadoptdetail',
+      page: () => PetAdoptDetailScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
       name: '/petowner',
       page: () => PetOwnerScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: '/service',
+      page: () => ServiceScreen(),
       transition: Transition.rightToLeft,
     ),
   ];

@@ -5,7 +5,11 @@ abstract class Routes {
   static const REGISTER = _Paths.REGISTER;
   static const ADOPT = _Paths.ADOPT;
   static const PETADOPT = _Paths.PETADOPT;
+  static const PETADOPTDETAIL = _Paths.PETADOPTDETAIL;
+  static const PETINFO = _Paths.PETINFO;
   static const PETOWNER = _Paths.PETOWNER;
+  static const MAIN = _Paths.MAIN;
+  static const SERVICE = _Paths.SERVICE;
 }
 
 abstract class _Paths {
@@ -15,5 +19,9 @@ abstract class _Paths {
   static const REGISTER = '/register';
   static const ADOPT = '/adopt';
   static const PETADOPT = '/petadopt';
+  static const PETADOPTDETAIL = '/petadoptdetail';
+  static const PETINFO = '/petinfo';
   static const PETOWNER = '/petowner';
+  static const MAIN = '/main';
+  static const SERVICE = '/service';
 }

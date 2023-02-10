@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/widget/button.dart';
 
 class PetOwnerScreen extends StatefulWidget {
   const PetOwnerScreen({super.key});
@@ -42,10 +43,7 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        "Loại thú cưng",
-                        style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-                      ),
+                      _text('Loại thú cưng'),
                       Container(
                         decoration: BoxDecoration(color: Color.fromARGB(255, 217, 217, 217), borderRadius: BorderRadius.circular(20.r)),
                         width: 130.w,
@@ -74,10 +72,7 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                           ),
                         ),
                       ),
-                      Text(
-                        "Tuổi",
-                        style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-                      ),
+                      _text('Tuổi'),
                       Container(
                         decoration: BoxDecoration(color: Color.fromARGB(255, 217, 217, 217), borderRadius: BorderRadius.circular(20.r)),
                         width: 110.w,
@@ -116,10 +111,7 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                   padding: EdgeInsets.only(left: 15.w),
                   child: Row(
                     children: [
-                      Text(
-                        "Giống thú cưng",
-                        style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-                      ),
+                      _text('Giống thú cưng'),
                       SizedBox(
                         width: 10.w,
                       ),
@@ -156,42 +148,13 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 10.h),
-              child: Text(
-                "Tình trạng thú cưng",
-                style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-              child: TextField(
-                maxLines: 2,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
-              ),
-            ),
+            Padding(padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 10.h), child: _text('Tình trạng thú cưng')),
+            _textArea(TextInputType.text),
+            Padding(padding: EdgeInsets.only(left: 15.w, right: 15.w), child: _text('Bệnh ( nếu có )')),
+            _textArea(TextInputType.text),
             Padding(
               padding: EdgeInsets.only(left: 15.w, right: 15.w),
-              child: Text(
-                "Bệnh ( nếu có )",
-                style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-              child: TextField(
-                maxLines: 2,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15.w, right: 15.w),
-              child: Text(
-                "Hình ảnh (bắt buộc )",
-                style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-              ),
+              child: _text('Hình ảnh (bắt buộc )'),
             ),
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
@@ -217,49 +180,20 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                     ),
                   ],
                 )),
-            Padding(
-              padding: EdgeInsets.only(left: 15.w, right: 15.w),
-              child: Text(
-                "Mong muốn",
-                style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-              child: TextField(
-                maxLines: 2,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15.w, right: 15.w),
-              child: Text(
-                "Thông tin liên hệ",
-                style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-              ),
-            ),
+            Padding(padding: EdgeInsets.only(left: 15.w, right: 15.w), child: _text('Mong muốn')),
+            _textArea(TextInputType.text),
+            Padding(padding: EdgeInsets.only(left: 15.w, right: 15.w), child: _text('Thông tin liên hệ')),
             Padding(
                 padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 10.h),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "Tên",
-                          style: GoogleFonts.inder(textStyle: TextStyle(fontSize: 15.sp, color: Color(0xff656565), fontWeight: FontWeight.w400)),
-                        ),
+                        _text('Tên'),
                         SizedBox(
-                          width: 50.w,
+                          width: 48.w,
                         ),
-                        SizedBox(
-                          width: 320.w,
-                          height: 30.h,
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.r))),
-                          ),
-                        ),
+                        _textInput(TextInputType.name)
                       ],
                     ),
                     SizedBox(
@@ -267,21 +201,11 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          "SĐT",
-                          style: GoogleFonts.inder(textStyle: TextStyle(fontSize: 15.sp, color: Color(0xff656565), fontWeight: FontWeight.w400)),
-                        ),
+                        _text('SĐT'),
                         SizedBox(
                           width: 46.w,
                         ),
-                        SizedBox(
-                          width: 320.w,
-                          height: 30.h,
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.r))),
-                          ),
-                        ),
+                        _textInput(TextInputType.number)
                       ],
                     ),
                     SizedBox(
@@ -289,21 +213,11 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          "Địa chỉ",
-                          style: GoogleFonts.inder(textStyle: TextStyle(fontSize: 15.sp, color: Color(0xff656565), fontWeight: FontWeight.w400)),
-                        ),
+                        _text('Địa chỉ'),
                         SizedBox(
-                          width: 24.w,
+                          width: 28.w,
                         ),
-                        SizedBox(
-                          width: 320.w,
-                          height: 30.h,
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.r))),
-                          ),
-                        ),
+                        _textInput(TextInputType.text)
                       ],
                     ),
                   ],
@@ -311,30 +225,45 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
             Center(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 40.h),
-                child: SizedBox(
-                  width: 366.w,
-                  height: 39,
-                  child: Material(
-                    color: const Color(0xffFF7A00),
-                    borderRadius: BorderRadius.circular(15.r),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Xác nhận',
-                            style: GoogleFonts.montserrat(textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp, color: Colors.white)),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                child: Button(
+                  text: 'Xác nhận',
+                  outLine: false,
+                  ontap: () {},
                 ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _text(String text) {
+    return Text(
+      text,
+      style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
+    );
+  }
+
+  Widget _textInput(TextInputType textInputType) {
+    return SizedBox(
+      width: 320.w,
+      height: 30.h,
+      child: TextField(
+        controller: null,
+        keyboardType: textInputType,
+        decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.r))),
+      ),
+    );
+  }
+
+  Widget _textArea(TextInputType textInputType) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
+      child: TextField(
+        maxLines: 2,
+        keyboardType: textInputType,
+        decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
       ),
     );
   }

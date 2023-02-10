@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/route/app_routes.dart';
+import 'package:pets/app/widget/button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -81,30 +82,16 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 120.h,
             ),
-            SizedBox(
-              width: 368.w,
-              height: 45,
-              child: Material(
-                color: const Color(0xffFF7A00),
-                borderRadius: BorderRadius.circular(15.r),
-                child: InkWell(
-                  onTap: () {
-                    var phoneNumber = phoneNumberController.text;
-                    var pwd = pwdController.text;
-                    print('SDT:$phoneNumber PWD:$pwd');
-                    Get.toNamed(Routes.ADOPT);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Đăng nhập',
-                        style: GoogleFonts.montserrat(textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp, color: Colors.white)),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            Button(
+              text: 'Đăng nhập',
+              outLine: false,
+              ontap: () {
+                var phoneNumber = phoneNumberController.text;
+                var pwd = pwdController.text;
+                print('SDT:$phoneNumber PWD:$pwd');
+                
+                Get.toNamed(Routes.MAIN);
+              },
             ),
             SizedBox(
               height: 30.h,
