@@ -48,8 +48,7 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                 ),
               ),
             ),
-            Container(
-              color: Colors.transparent,
+            SizedBox(
               width: 370.w,
               height: 210.h,
               child: GridView.builder(

@@ -58,7 +58,10 @@ class _AdoptScreenState extends State<AdoptScreen> {
             actions: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Icon(Icons.account_circle_rounded, size: 45.r, color: Colors.amber),
+                child: CircleAvatar(
+                  radius: 25.r,
+                  backgroundImage: const AssetImage('assets/png/avatar.png'),
+                ),
               )
             ],
             bottom: TabBar(indicatorPadding: EdgeInsets.symmetric(horizontal: 15.w), labelPadding: EdgeInsets.only(bottom: 5.h), indicatorColor: Colors.black, tabs: [
