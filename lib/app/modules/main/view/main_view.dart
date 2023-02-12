@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:pets/app/modules/adopt/view/adopt_view.dart';
 import 'package:pets/app/modules/serivce/view/service_view.dart';
+import 'package:pets/app/modules/shopping/view/shopping_view.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,9 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     ServiceScreen(),
     AdoptScreen(),
-    Text(
-      'Index 2: Shopping',
-    ),
+    ShoppingScreen(),
     Text(
       'Index 3: Menu',
     ),

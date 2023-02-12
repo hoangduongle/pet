@@ -10,6 +10,8 @@ abstract class Routes {
   static const PETOWNER = _Paths.PETOWNER;
   static const MAIN = _Paths.MAIN;
   static const SERVICE = _Paths.SERVICE;
+  static const SEARCHSERVICE = _Paths.SEARCHSERVICE;
+  static const SERVICEDETAIL = _Paths.SERVICEDETAIL;
 }
 
 abstract class _Paths {
@@ -24,4 +26,6 @@ abstract class _Paths {
   static const PETOWNER = '/petowner';
   static const MAIN = '/main';
   static const SERVICE = '/service';
+  static const SEARCHSERVICE = '/searchservice';
+  static const SERVICEDETAIL = '/servicedetail';
 }

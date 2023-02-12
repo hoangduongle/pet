@@ -8,7 +8,9 @@ import 'package:pets/app/modules/petadoptDetail/view/petadoptDetail_view.dart';
 import 'package:pets/app/modules/petinfo/view/petinfo_view.dart';
 import 'package:pets/app/modules/petowner/view/petowner_view.dart';
 import 'package:pets/app/modules/register/view/register_view.dart';
+import 'package:pets/app/modules/searchService/view/searchService_view.dart';
 import 'package:pets/app/modules/serivce/view/service_view.dart';
+import 'package:pets/app/modules/serviceDetail/view/serviceDetail_view.dart';
 import 'package:pets/app/modules/wellcome/view/wellcome_view.dart';
 import 'package:pets/app/route/app_routes.dart';
 
@@ -74,6 +76,16 @@ class AppPages {
       name: '/service',
       page: () => ServiceScreen(),
       transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: '/searchservice',
+      page: () => SearchServiceScreen(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: '/servicedetail',
+      page: () => ServiceDetailScreen(),
+      transition: Transition.downToUp,
     ),
   ];
 }

@@ -8,14 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/route/app_routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class ServiceScreen extends StatefulWidget {
-  const ServiceScreen({super.key});
+class ShoppingScreen extends StatefulWidget {
+  const ShoppingScreen({super.key});
 
   @override
-  State<ServiceScreen> createState() => _ServiceScreenState();
+  State<ShoppingScreen> createState() => _ShoppingScreenState();
 }
 
-class _ServiceScreenState extends State<ServiceScreen> {
+class _ShoppingScreenState extends State<ShoppingScreen> {
   int currentIndex = 0;
 
   @override
@@ -122,7 +122,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             color: Color(0xffACACAC),
                           ),
                           Text(
-                            'Tìm kiếm dịch vụ và phòng khám',
+                            'Tìm thứ tốt nhất cho Boss nhà bạn',
                             style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
                               color: Color(0xffACACAC),
@@ -138,11 +138,11 @@ class _ServiceScreenState extends State<ServiceScreen> {
             Center(
               child: Container(
                 width: 400.w,
-                height: 212.h,
+                // height: 2.h,
                 child: GridView.builder(
                   shrinkWrap: true,
                   itemCount: 6,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 10),
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -161,9 +161,13 @@ class _ServiceScreenState extends State<ServiceScreen> {
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 5.h),
-                          child: Text(
-                            'Spa & Grooming',
-                            style: TextStyle(fontSize: 13.sp, color: Color(0xff808080), fontWeight: FontWeight.w400),
+                          child: Container(
+                            child: Text(
+                              'Đồ dùng, phụ kiện',
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 12.sp, color: Color(0xff808080), fontWeight: FontWeight.w400),
+                            ),
                           ),
                         )
                       ],
@@ -175,13 +179,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
             SizedBox(
               height: 30.h,
             ),
-            paddingText('Dịch vụ nổi bật'),
+            paddingText('Ưu đãi nổi bật'),
             cardPet(),
-            paddingText('Vaccine cần thiết cho thú cưng'),
-            cardPet(),
-            paddingText('Dịch vụ tận nhà'),
-            cardPet(),
-            paddingText('Sen đi làm xa, có Hotel lo nha !'),
+            paddingText('Sản phẩm nổi bật'),
             cardPet(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -254,22 +254,12 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     SizedBox(
                       width: 151.w,
                       child: Text(
-                        'Vaccine ngừa 4 bệnh truyền nhiễm',
+                        'Giường cho mèo Light Blue Ottoman',
                         style: TextStyle(color: const Color(0xff343434), fontWeight: FontWeight.w500, fontSize: 14.sp),
                       ),
                     ),
                     SizedBox(
-                      height: 4.h,
-                    ),
-                    SizedBox(
-                      width: 151.w,
-                      child: Text(
-                        'Pet Care Center',
-                        style: TextStyle(color: const Color(0xff7A7A7A), fontSize: 10.sp),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 6.h,
+                      height: 15.h,
                     ),
                     SizedBox(
                       width: 151.w,
@@ -280,17 +270,17 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             'Giá 450.000đ',
                             style: TextStyle(color: const Color(0xffFF7A00), fontSize: 15.sp, fontWeight: FontWeight.bold),
                           ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Color(0xffFFE600),
+                          Container(
+                            width: 24.w,
+                            height: 24.h,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.r), color: Color(0xffFF7A00)),
+                            child: Center(
+                              child: Icon(
+                                Icons.shopping_cart_outlined,
+                                size: 20.r,
+                                color: Colors.white,
                               ),
-                              Text(
-                                '5.0',
-                                style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold),
-                              )
-                            ],
+                            ),
                           )
                         ],
                       ),
