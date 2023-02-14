@@ -1,18 +1,15 @@
+import 'package:antdesign_icons/antdesign_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pets/app/modules/adopt/view/adopt_view.dart';
+import 'package:pets/app/modules/main/controller/main_controller.dart';
 import 'package:pets/app/modules/serivce/view/service_view.dart';
 import 'package:pets/app/modules/shopping/view/shopping_view.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+import '../widgets/nav_button.dart';
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
+class MainScreen extends GetView<MainController> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
@@ -27,39 +24,67 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Obx(() => PageStorage(bucket: controller.bucket, child: controller.currentScreen)),
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.heart_broken_outlined),
-            label: 'Dịch vụ',
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 20.h,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          height: 65.h,
+          child: Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                NavButton(
+                  title: 'Dịch vụ',
+                  icon: AntIcons.heartFilled,
+                  iconOutlined: AntIcons.heartOutlined,
+                  onPressed: () {
+                    controller.changeTab(0);
+                  },
+                  state: controller.currentTab.value == 0,
+                ),
+                SizedBox(
+                  width: 4.w,
+                ),
+                NavButton(
+                  title: 'Nhận nuôi',
+                  icon: AntIcons.searchOutlined,
+                  iconOutlined: AntIcons.searchOutlined,
+                  onPressed: () {
+                    controller.changeTab(1);
+                  },
+                  state: controller.currentTab.value == 1,
+                ),
+                SizedBox(
+                  width: 4.w,
+                ),
+                NavButton(
+                  title: 'Mua sắm',
+                  icon: Icons.shopping_cart,
+                  iconOutlined: AntIcons.shoppingCartOutlined,
+                  onPressed: () {
+                    controller.changeTab(2);
+                  },
+                  state: controller.currentTab.value == 2,
+                ),
+                SizedBox(
+                  width: 4.w,
+                ),
+                NavButton(
+                  title: 'Menu',
+                  icon: AntIcons.menuUnfoldOutlined,
+                  iconOutlined: Icons.menu,
+                  onPressed: () {
+                    controller.changeTab(3);
+                  },
+                  state: controller.currentTab.value == 3,
+                ),
+              ],
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Nhận nuôi ',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Mua sắm',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: 'Menu',
-          ),
-        ],
-        showUnselectedLabels: true,
-        currentIndex: _selectedIndex,
-        selectedItemColor: const Color(0xffFF7A00),
-        unselectedItemColor: const Color(0xff676767),
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-            print(_selectedIndex);
-          });
-        },
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
     );
   }

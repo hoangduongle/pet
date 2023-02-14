@@ -12,6 +12,10 @@ abstract class Routes {
   static const SERVICE = _Paths.SERVICE;
   static const SEARCHSERVICE = _Paths.SEARCHSERVICE;
   static const SERVICEDETAIL = _Paths.SERVICEDETAIL;
+  static const ITEMDETAIL = _Paths.ITEMDETAIL;
+  static const CART = _Paths.CART;
+  static const ORDER = _Paths.ORDER;
+  static const SHOPPING = _Paths.SHOPPING;
 }
 
 abstract class _Paths {
@@ -28,4 +32,8 @@ abstract class _Paths {
   static const SERVICE = '/service';
   static const SEARCHSERVICE = '/searchservice';
   static const SERVICEDETAIL = '/servicedetail';
+  static const ITEMDETAIL = '/itemdetail';
+  static const CART = '/cart';
+  static const ORDER = '/order';
+  static const SHOPPING = '/shopping';
 }

@@ -180,7 +180,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               height: 30.h,
             ),
             paddingText('Ưu đãi nổi bật'),
-            cardPet(),
+            card(),
             paddingText('Sản phẩm nổi bật'),
             cardPet(),
             Padding(
@@ -238,7 +238,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               child: InkWell(
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.ITEMDETAIL);
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -281,6 +283,89 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                                 color: Colors.white,
                               ),
                             ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget card() {
+    return SizedBox(
+      height: 220.h,
+      child: GridView.builder(
+        itemCount: 3,
+        scrollDirection: Axis.horizontal,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+        ),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(left: 20.w),
+            child: Material(
+              child: InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {},
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: Image.asset(
+                        'assets/png/cat.png',
+                        width: 152.w,
+                        height: 122.h,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 151.w,
+                      child: Text(
+                        'Vaccine ngừa 4 bệnh truyền nhiễm',
+                        style: TextStyle(color: const Color(0xff343434), fontWeight: FontWeight.w500, fontSize: 14.sp),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 4.h,
+                    ),
+                    SizedBox(
+                      width: 151.w,
+                      child: Text(
+                        'Pet Care Center',
+                        style: TextStyle(color: const Color(0xff7A7A7A), fontSize: 10.sp),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 6.h,
+                    ),
+                    SizedBox(
+                      width: 151.w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Giá 450.000đ',
+                            style: TextStyle(color: const Color(0xffFF7A00), fontSize: 15.sp, fontWeight: FontWeight.bold),
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: Color(0xffFFE600),
+                              ),
+                              Text(
+                                '5.0',
+                                style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold),
+                              )
+                            ],
                           )
                         ],
                       ),

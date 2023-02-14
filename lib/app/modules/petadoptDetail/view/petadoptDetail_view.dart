@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/text_styles.dart';
 import 'package:pets/app/modules/petadoptDetail/view/detail.dart';
 import 'package:pets/app/modules/petowner/view/petowner_view.dart';
 
@@ -30,31 +32,23 @@ class _PetAdoptDetailScreenState extends State<PetAdoptDetailScreen> {
             },
             child: Icon(
               Icons.arrow_back_ios,
-              color: Color(0xff868686),
+              size: 22.sp,
+              color: AppColors.C868686,
             ),
           ),
           title: Text(
             "Mèo",
-            style: GoogleFonts.inter(textStyle: TextStyle(color: Colors.black, fontSize: 23.sp)),
+            style: h6.copyWith(color: AppColors.C000000, fontSize: 23.sp),
           ),
           bottom: TabBar(indicatorPadding: EdgeInsets.symmetric(horizontal: 15.w), labelPadding: EdgeInsets.only(bottom: 5.h), indicatorColor: Colors.black, tabs: [
-            Text(
-              'Nhận nuôi thú cưng',
-              style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                color: Colors.black,
-              )),
-            ),
+            Text('Nhận nuôi thú cưng', style: h6.copyWith(color: AppColors.C656565, fontSize: 15.sp)),
             Text(
               'Tìm chủ thú cưng',
-              style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                color: Colors.black,
-              )),
+              style: h6.copyWith(color: AppColors.C656565, fontSize: 15.sp),
             )
           ]),
         ),
-        body: TabBarView(children: [
+        body: const TabBarView(children: [
           DetailAdopt(),
           PetOwnerScreen(),
         ]),

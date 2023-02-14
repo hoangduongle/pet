@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pets/app/widget/button.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/core/widget/button.dart';
 
 class PetOwnerScreen extends StatefulWidget {
   const PetOwnerScreen({super.key});
@@ -31,10 +32,7 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
-              child: Text(
-                "Trước khi tìm chủ mới cho thú cưng, bạn vui lòng nhập một vài thông tin giúp mình nha :3",
-                style: GoogleFonts.roboto(textStyle: TextStyle(color: Color(0xff9F9F9F))),
-              ),
+              child: Text("Trước khi tìm chủ mới cho thú cưng, bạn vui lòng nhập một vài thông tin giúp mình nha :3", style: h6.copyWith(color: AppColors.C9F9F9F, fontSize: 15.sp, fontWeight: FontWeights.medium)),
             ),
             Column(
               children: [
@@ -45,14 +43,14 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                     children: [
                       _text('Loại thú cưng'),
                       Container(
-                        decoration: BoxDecoration(color: Color.fromARGB(255, 217, 217, 217), borderRadius: BorderRadius.circular(20.r)),
+                        decoration: BoxDecoration(color: AppColors.Cffffff, borderRadius: BorderRadius.circular(20.r)),
                         width: 130.w,
                         height: 35.h,
                         child: InputDecorator(
                           decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))), contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
-                              style: TextStyle(color: Color(0xff656565), fontWeight: FontWeight.w500),
+                              style: h5.copyWith(fontSize: 15.sp, color: AppColors.C656565, fontWeight: FontWeights.medium),
                               borderRadius: BorderRadius.circular(20.r),
                               value: dropdownValueType,
                               isDense: true,
@@ -74,14 +72,14 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                       ),
                       _text('Tuổi'),
                       Container(
-                        decoration: BoxDecoration(color: Color.fromARGB(255, 217, 217, 217), borderRadius: BorderRadius.circular(20.r)),
+                        decoration: BoxDecoration(color: AppColors.Cffffff, borderRadius: BorderRadius.circular(20.r)),
                         width: 110.w,
                         height: 35.h,
                         child: InputDecorator(
                           decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))), contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
-                              style: TextStyle(color: Color(0xff656565), fontWeight: FontWeight.w500),
+                              style: h5.copyWith(fontSize: 15.sp, color: AppColors.C656565, fontWeight: FontWeights.medium),
                               borderRadius: BorderRadius.circular(20.r),
                               value: dropdownValueAge,
                               isDense: true,
@@ -116,14 +114,14 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
                         width: 10.w,
                       ),
                       Container(
-                        decoration: BoxDecoration(color: Color.fromARGB(255, 217, 217, 217), borderRadius: BorderRadius.circular(20.r)),
+                        decoration: BoxDecoration(color: AppColors.Cffffff, borderRadius: BorderRadius.circular(20.r)),
                         width: 150.w,
                         height: 35.h,
                         child: InputDecorator(
                           decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))), contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
-                              style: TextStyle(color: Color(0xff656565), fontWeight: FontWeight.w500),
+                              style: h5.copyWith(fontSize: 15.sp, color: AppColors.C656565, fontWeight: FontWeights.medium),
                               borderRadius: BorderRadius.circular(20.r),
                               value: dropdownValueCategory,
                               isDense: true,
@@ -239,10 +237,7 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
   }
 
   Widget _text(String text) {
-    return Text(
-      text,
-      style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-    );
+    return Text(text, style: h6.copyWith(fontSize: 16.sp, fontWeight: FontWeights.medium, color: AppColors.C656565));
   }
 
   Widget _textInput(TextInputType textInputType) {
@@ -263,7 +258,7 @@ class _PetOwnerScreenState extends State<PetOwnerScreen> {
       child: TextField(
         maxLines: 2,
         keyboardType: textInputType,
-        decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
+        decoration: InputDecoration(hintText: '...', border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
       ),
     );
   }

@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/route/app_routes.dart';
-import 'package:pets/app/widget/button.dart';
+import 'package:pets/app/core/widget/button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

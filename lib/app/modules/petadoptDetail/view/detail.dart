@@ -3,7 +3,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pets/app/widget/button.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/widget/button.dart';
+
+import '../../../core/values/app_colors.dart';
+import '../../../core/values/text_styles.dart';
 
 class DetailAdopt extends StatefulWidget {
   const DetailAdopt({super.key});
@@ -29,26 +33,23 @@ class _DetailAdoptState extends State<DetailAdopt> {
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: Text(
                     "Bạn muốn nhận nuôi mèo ư ?",
-                    style: TextStyle(color: Color(0xff292929), fontWeight: FontWeight.w500),
+                    style: h6.copyWith(color: AppColors.C000000, fontSize: 16.sp, fontWeight: FontWeights.medium),
                   ))),
           Padding(
             padding: EdgeInsets.only(left: 15.w, right: 15.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  "Giống thú cưng",
-                  style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
-                ),
+                Text("Giống thú cưng", style: h6.copyWith(color: AppColors.C656565, fontSize: 15.sp)),
                 Container(
-                  decoration: BoxDecoration(color: Color.fromARGB(255, 217, 217, 217), borderRadius: BorderRadius.circular(20.r)),
+                  decoration: BoxDecoration(color: AppColors.Cffffff, borderRadius: BorderRadius.circular(20.r)),
                   width: 130.w,
                   height: 35.h,
                   child: InputDecorator(
                     decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))), contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                        style: TextStyle(color: Color(0xff656565), fontWeight: FontWeight.w500),
+                        style: h5.copyWith(fontSize: 15.sp, color: AppColors.C656565, fontWeight: FontWeights.medium),
                         borderRadius: BorderRadius.circular(20.r),
                         value: dropdownValueType,
                         isDense: true,
@@ -61,6 +62,7 @@ class _DetailAdoptState extends State<DetailAdopt> {
                         }).toList(),
                         onChanged: (value) {
                           setState(() {
+                            debugPrint(value);
                             dropdownValueType = value!;
                           });
                         },
@@ -70,17 +72,17 @@ class _DetailAdoptState extends State<DetailAdopt> {
                 ),
                 Text(
                   "Tuổi",
-                  style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
+                  style: h6.copyWith(color: AppColors.C656565, fontSize: 15.sp),
                 ),
                 Container(
-                  decoration: BoxDecoration(color: Color.fromARGB(255, 217, 217, 217), borderRadius: BorderRadius.circular(20.r)),
+                  decoration: BoxDecoration(color: AppColors.Cffffff, borderRadius: BorderRadius.circular(20.r)),
                   width: 110.w,
                   height: 35.h,
                   child: InputDecorator(
                     decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))), contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                        style: TextStyle(color: Color(0xff656565), fontWeight: FontWeight.w500),
+                        style: h5.copyWith(fontSize: 15.sp, color: AppColors.C656565, fontWeight: FontWeights.medium),
                         borderRadius: BorderRadius.circular(20.r),
                         value: dropdownValueAge,
                         isDense: true,
@@ -109,10 +111,10 @@ class _DetailAdoptState extends State<DetailAdopt> {
           Align(
             alignment: Alignment(0.9, 1),
             child: Button(
-              width: 120,
-              height: 35,
-              borderRadius: 50,
-              fontSize: 13,
+              width: 120.w,
+              height: 35.h,
+              borderRadius: 50.r,
+              fontSize: 13.sp,
               text: "Lọc",
               outLine: false,
               ontap: () {},
@@ -181,17 +183,17 @@ class _DetailAdoptState extends State<DetailAdopt> {
                                   fontSize: 13.sp,
                                 )),
                               ),
-                              //
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 );
               },
             ),
-          ))
+          )),
+          
         ],
       ),
     );

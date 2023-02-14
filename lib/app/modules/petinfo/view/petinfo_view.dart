@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pets/app/widget/button.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/core/widget/button.dart';
 
 class PetInfoScreen extends StatefulWidget {
   const PetInfoScreen({super.key});
@@ -27,13 +28,11 @@ class _PetInfoScreenState extends State<PetInfoScreen> {
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Color(0xff868686),
+            size: 22.sp,
+            color: AppColors.C868686,
           ),
         ),
-        title: Text(
-          "Mèo",
-          style: GoogleFonts.inter(textStyle: TextStyle(color: Colors.black, fontSize: 23.sp)),
-        ),
+        title: Text("Mèo", style: h6.copyWith(color: AppColors.C000000, fontSize: 23.sp)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -48,7 +47,7 @@ class _PetInfoScreenState extends State<PetInfoScreen> {
                 padding: EdgeInsets.symmetric(vertical: 10.h),
                 child: Text(
                   "Mèo Anh lông dài",
-                  style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
+                  style: h6.copyWith(fontSize: 24.sp, fontWeight: FontWeights.medium),
                 ),
               ),
               SizedBox(
@@ -59,23 +58,23 @@ class _PetInfoScreenState extends State<PetInfoScreen> {
                   children: [
                     Text(
                       'Ngày sinh : 20-10-2021',
-                      style: TextStyle(fontSize: 13.sp, color: const Color(0xff7A7A7A)),
+                      style: TextStyle(fontSize: 13.sp, color: AppColors.C7A7A7A),
                     ),
                     Text(
                       'Tuổi : 16 tháng ',
-                      style: TextStyle(fontSize: 13.sp, color: const Color(0xff7A7A7A)),
+                      style: TextStyle(fontSize: 13.sp, color: AppColors.C7A7A7A),
                     ),
                     Text(
                       'Chủ không còn khả năng nuôi ',
-                      style: TextStyle(fontSize: 13.sp, color: const Color(0xff7A7A7A)),
+                      style: TextStyle(fontSize: 13.sp, color: AppColors.C7A7A7A),
                     ),
                     RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        style: TextStyle(color: const Color(0xff7A7A7A), fontSize: 13.sp),
+                        style: TextStyle(fontSize: 13.sp, color: AppColors.C7A7A7A),
                         children: const <TextSpan>[
                           TextSpan(text: 'Liên hệ: '),
-                          TextSpan(text: '0325434343', style: TextStyle(color: Color(0xffD34E4E))),
+                          TextSpan(text: '0325434343', style: TextStyle(color: AppColors.CD34E4E)),
                         ],
                       ),
                     ),
@@ -86,32 +85,32 @@ class _PetInfoScreenState extends State<PetInfoScreen> {
                 padding: EdgeInsets.symmetric(vertical: 10.h),
                 child: Text(
                   'Mô tả',
-                  style: TextStyle(color: Color(0xff292929), fontWeight: FontWeight.w500),
+                  style: h6.copyWith(fontSize: 16.sp, color: AppColors.C292929, fontWeight: FontWeights.medium),
                 ),
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
                 height: 140.h,
-                decoration: BoxDecoration(color: Color.fromARGB(255, 229, 229, 229), borderRadius: BorderRadius.circular(14.r)),
+                decoration: BoxDecoration(color: AppColors.Cf4f4f4, borderRadius: BorderRadius.circular(14.r)),
                 child: Text(
                   'Nhiều người chọn mèo xanh Anh làm thú cưng, vì giống mèo này là một trong những loài phổ biến nhất ở Nga. Đại diện của giống chó này rất thông minh, bình tĩnh và kiềm chế, chúng hoàn toàn chịu đựng được sự cô đơn. Cần xem xét chi tiết hơn về lịch sử, đặc điểm và tính cách của con mèo, các sắc thái của việc nuôi dưỡng và chăm sóc.',
-                  style: TextStyle(fontSize: 14.sp, color: Color(0xff7A7A7A)),
+                  style: h6.copyWith(fontSize: 14.sp, color: AppColors.C7A7A7A),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.h),
                 child: Text(
                   'Yêu cầu',
-                  style: TextStyle(color: Color(0xff292929), fontWeight: FontWeight.w500),
+                  style: h6.copyWith(fontSize: 16.sp, color: AppColors.C292929, fontWeight: FontWeights.medium),
                 ),
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
                 height: 60.h,
-                decoration: BoxDecoration(color: Color.fromARGB(255, 229, 229, 229), borderRadius: BorderRadius.circular(14.r)),
+                decoration: BoxDecoration(color: AppColors.Cf4f4f4, borderRadius: BorderRadius.circular(14.r)),
                 child: Text(
                   'Yêu thương mèo, có trách nhiệm với thú cưng của mình. Đồng ý với các điều khoản nhận nuôi.',
-                  style: TextStyle(fontSize: 14.sp, color: Color(0xff7A7A7A)),
+                  style: h6.copyWith(fontSize: 14.sp, color: AppColors.C7A7A7A),
                 ),
               ),
               Center(

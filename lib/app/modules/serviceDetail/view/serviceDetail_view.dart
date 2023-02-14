@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/values/text_styles.dart';
+
+import '../../serivce/widgets/cardFooter.dart';
 
 class ServiceDetailScreen extends StatefulWidget {
   const ServiceDetailScreen({super.key});
@@ -13,11 +19,21 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffdfdfd),
+      backgroundColor: AppColors.CFDFDFD,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.C868686,
+            size: 22.sp,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -98,19 +114,20 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 25.w),
-              child: Container(
-                child: Text(
-                  'Petini Care',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
-                ),
+              child: Text(
+                'Petini Care',
+                style: h5.copyWith(fontWeight: FontWeights.bold, fontSize: 22.sp),
               ),
+            ),
+            SizedBox(
+              height: 8.h,
             ),
             Container(
               padding: EdgeInsets.only(left: 25.w),
               width: 320.w,
               child: Text(
                 'Pet Hour / Day care & Month care - Home care service Pet Playground & Pet Bathing - Hotel',
-                style: TextStyle(color: Color(0xff838383), fontSize: 14.sp),
+                style: h6.copyWith(color: AppColors.C838383, fontSize: 12.sp, fontWeight: FontWeights.regular),
               ),
             ),
             Padding(
@@ -132,30 +149,37 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                     children: [
                       Text(
                         '4.9',
-                        style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
+                        style: h6.copyWith(fontSize: 30.sp, fontWeight: FontWeights.bold),
                       ),
                       SizedBox(
                         width: 10.w,
                       ),
                       Text(
                         '35 đánh giá',
-                        style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold, color: Color(0xff8E8E8E)),
+                        style: h6.copyWith(fontSize: 18.sp, fontWeight: FontWeights.bold, color: AppColors.C8E8E8E),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       for (int i = 0; i < 5; i++)
-                        Icon(
+                        const Icon(
                           Icons.star,
-                          color: Colors.yellow,
+                          color: AppColors.CFFE600,
                         ),
                     ],
                   ),
                 ],
               ),
             ),
-            for (int i = 0; i < 5; i++) cardFooter(),
+            SizedBox(
+              height: 10.h,
+            ),
+            for (int i = 0; i < 5; i++)
+              Padding(
+                padding: EdgeInsets.only(left: 25.w, top: 20.h),
+                child: CardFooter(),
+              ),
             SizedBox(
               height: 60.h,
             ),

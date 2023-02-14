@@ -4,6 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/modules/searchService/widgets/searchFast.dart';
 
 class SearchServiceScreen extends StatefulWidget {
   const SearchServiceScreen({super.key});
@@ -12,11 +16,14 @@ class SearchServiceScreen extends StatefulWidget {
   State<SearchServiceScreen> createState() => _SearchServiceScreenState();
 }
 
+TextEditingController searchTextController = new TextEditingController();
+
 class _SearchServiceScreenState extends State<SearchServiceScreen> {
   @override
   Widget build(BuildContext context) {
+    // searchTextController.text = Get.arguments['searchText'];
     return Scaffold(
-      backgroundColor: Color(0xfff2f2f2),
+      backgroundColor: AppColors.Cf2f2f2,
       appBar: AppBar(
         toolbarHeight: 115,
         backgroundColor: Colors.white,
@@ -28,119 +35,72 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                  child: Material(
-                    elevation: 0,
-                    borderRadius: BorderRadius.circular(14.r),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20.w),
-                        width: 320.w,
-                        height: 40.h,
-                        decoration: BoxDecoration(color: Color(0xffD8D8D8), borderRadius: BorderRadius.circular(14.r)),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Tìm kiếm dịch vụ và phòng khám',
-                            style: GoogleFonts.inter(
-                                textStyle: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xff707070),
-                            )),
-                          ),
-                        ),
-                      ),
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                  child: Container(
+                    width: 300.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: AppColors.CD8D8D8,
+                    ),
+                    child: TextField(
+                      controller: searchTextController,
+                      cursorColor: AppColors.C707070,
+                      autofocus: true,
+                      onChanged: (value) {
+                        debugPrint(value);
+                      },
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+                          focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: AppColors.CD8D8D8), borderRadius: BorderRadius.circular(10.r)),
+                          enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: AppColors.CD8D8D8), borderRadius: BorderRadius.circular(10.r)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r)),
+                          hintText: 'Tìm kiếm dịch vụ và phòng khám',
+                          hintStyle: h6.copyWith(
+                            color: AppColors.C707070,
+                            fontSize: 14.sp,
+                          )),
                     ),
                   ),
                 ),
                 InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: () {
                     Get.back();
                   },
                   child: Text(
                     "Thoát",
-                    style: GoogleFonts.inter(textStyle: TextStyle(fontSize: 18.sp, color: Color(0xffEA7509), fontWeight: FontWeight.bold)),
+                    style: h6.copyWith(fontSize: 19.sp, color: AppColors.CEA7509, fontWeight: FontWeights.bold),
                   ),
                 ),
               ],
             ),
             Row(
               children: [
-                Material(
-                  elevation: 0,
-                  borderRadius: BorderRadius.circular(14.r),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15.w),
-                      height: 30.h,
-                      decoration: BoxDecoration(color: Color(0xffCDCDCD), borderRadius: BorderRadius.circular(14.r)),
-                      child: Center(
-                        child: Text(
-                          'Spa & Grooming',
-                          style: GoogleFonts.inter(
-                              textStyle: TextStyle(
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff7B7B7B),
-                          )),
-                        ),
-                      ),
-                    ),
-                  ),
+                SearchFast(
+                  text: 'Spa & Grooming',
+                  ontap: () {
+                    searchTextController.text = 'Spa & Grooming';
+                  },
                 ),
                 SizedBox(
                   width: 10.w,
                 ),
-                Material(
-                  elevation: 0,
-                  borderRadius: BorderRadius.circular(14.r),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15.w),
-                      height: 30.h,
-                      decoration: BoxDecoration(color: Color(0xffCDCDCD), borderRadius: BorderRadius.circular(14.r)),
-                      child: Center(
-                        child: Text(
-                          'Mèo',
-                          style: GoogleFonts.inter(
-                              textStyle: TextStyle(
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff7B7B7B),
-                          )),
-                        ),
-                      ),
-                    ),
-                  ),
+                SearchFast(
+                  text: 'Mèo',
+                  ontap: () {
+                    searchTextController.text = 'Mèo';
+                  },
                 ),
                 SizedBox(
                   width: 10.w,
                 ),
-                Material(
-                  elevation: 0,
-                  borderRadius: BorderRadius.circular(14.r),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15.w),
-                      height: 30.h,
-                      decoration: BoxDecoration(color: Color(0xffCDCDCD), borderRadius: BorderRadius.circular(14.r)),
-                      child: Center(
-                        child: Text(
-                          'Chó',
-                          style: GoogleFonts.inter(
-                              textStyle: TextStyle(
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff7B7B7B),
-                          )),
-                        ),
-                      ),
-                    ),
-                  ),
+                SearchFast(
+                  text: 'Chó',
+                  ontap: () {
+                    searchTextController.text = 'Chó';
+                  },
                 ),
               ],
             )
@@ -165,6 +125,7 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
 
   Widget cardService() {
     return Material(
+      color: AppColors.CF0F0F0,
       child: InkWell(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
@@ -190,8 +151,8 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                         borderRadius: BorderRadius.circular(10.r),
                         child: Image.asset(
                           'assets/png/petycarecenter.png',
-                          height: 64,
-                          width: 64,
+                          height: 70.h,
+                          width: 70.w,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -201,13 +162,7 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 3.h,
-                          ),
-                          Text(
-                            'Pet Homies',
-                            style: TextStyle(fontSize: 18.sp, color: Color(0xff343434), fontWeight: FontWeight.bold),
-                          ),
+                          Text('Pet Homies', style: h6.copyWith(color: AppColors.C343434, fontSize: 17.sp, fontWeight: FontWeights.bold)),
                           SizedBox(
                             height: 10.h,
                           ),
@@ -215,37 +170,37 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                             children: [
                               Icon(
                                 Icons.star,
-                                size: 18.sp,
-                                color: Color(0xffFFE600),
+                                size: 20.sp,
+                                color: AppColors.CFFE600,
                               ),
-                              Text(
-                                '5.0',
-                                style: TextStyle(fontSize: 13.sp, color: Color(0xff2d2d2d), fontWeight: FontWeight.bold),
+                              SizedBox(
+                                width: 5.w,
                               ),
+                              Text('5.0', style: h6.copyWith(color: AppColors.C2D2D2D, fontSize: 15.sp, fontWeight: FontWeights.bold)),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Text(
-                                  '(58)',
-                                  style: TextStyle(fontSize: 13.sp, color: Color(0xff656565)),
-                                ),
+                                child: Text('(58)', style: h6.copyWith(color: AppColors.C656565, fontSize: 13.sp, fontWeight: FontWeights.regular)),
                               ),
                               Icon(
                                 Icons.all_inbox,
                                 size: 18.sp,
-                                color: Color(0xff656565),
+                                color: AppColors.C656565,
                               ),
                               SizedBox(
                                 width: 5.w,
                               ),
                               Text(
                                 '10+',
-                                style: TextStyle(fontSize: 13.sp, color: Color(0xff656565)),
+                                style: h6.copyWith(color: AppColors.C656565, fontSize: 13.sp, fontWeight: FontWeights.regular),
                               ),
                             ],
                           )
                         ],
                       )
                     ],
+                  ),
+                  SizedBox(
+                    height: 5.h,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.w),
@@ -256,15 +211,9 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                       ],
                     ),
                   ),
-                  Container(
-                    child: Text(
-                      'Xem tất cả',
-                      style: TextStyle(
-                        color: Color(0xff969696),
-                        fontSize: 12.sp,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
+                  Text(
+                    'Xem tất cả',
+                    style: h6.copyWith(color: AppColors.C969696, fontSize: 13.sp, fontWeight: FontWeights.medium),
                   ),
                 ],
               ),
@@ -285,8 +234,8 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
             borderRadius: BorderRadius.circular(10.r),
             child: Image.asset(
               'assets/png/petycarecenter.png',
-              height: 48,
-              width: 48,
+              height: 50.h,
+              width: 50.w,
               fit: BoxFit.cover,
             ),
           ),
@@ -296,19 +245,16 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 5.h,
-              ),
               Text(
                 'Cạo lông cho mèo - Shave Cats hair',
-                style: TextStyle(fontSize: 10.sp, color: Color(0xff343434), fontWeight: FontWeight.bold),
+                style: h6.copyWith(fontSize: 12.sp, color: AppColors.C343434, fontWeight: FontWeights.medium),
               ),
               SizedBox(
                 height: 10.h,
               ),
               Text(
                 'Giá từ 400.000đ',
-                style: TextStyle(fontSize: 10.sp, color: Color(0xff929292), fontWeight: FontWeight.bold),
+                style: h6.copyWith(fontSize: 10.sp, color: AppColors.C929292, fontWeight: FontWeights.regular),
               ),
             ],
           )

@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/route/app_routes.dart';
-import 'package:pets/app/widget/button.dart';
+import 'package:pets/app/core/widget/button.dart';
 
-import '../../../widget/SizedBoxWidget.dart';
+import '../../../core/widget/SizedBoxWidget.dart';
 
 class WellcomeScreen extends StatefulWidget {
   const WellcomeScreen({super.key});
