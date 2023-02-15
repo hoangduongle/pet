@@ -33,6 +33,16 @@ abstract class AppColors {
   static const Color C8E8E8E = Color(0xff8E8E8E);
   static const Color C9F9F9F = Color(0xff9F9F9F);
   static const Color Cf4f4f4 = Color.fromARGB(255, 229, 229, 229);
+  static const Color Cf3f3f3 = Color(0xfff3f3f3);
+  static const Color C717171 = Color(0xff717171);
+  static const Color CFFCE31 = Color(0xffFFCE31);
+  static const Color C4D4D4D = Color(0xff4D4D4D);
+  static const Color C747474 = Color(0xff747474);
+  static const Color C595959 = Color(0xff595959);
+  static const Color C949494 = Color(0xff949494);
+  static const Color Cf7f7f7 = Color(0xfff7f7f7);
+  static const Color CD9D9D9 = Color(0xffD9D9D9);
+  static const Color C787878 = Color(0xff787878);
 
 
   

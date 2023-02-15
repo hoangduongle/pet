@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/values/text_styles.dart';
 import 'package:pets/app/core/widget/button.dart';
 import 'package:pets/app/modules/order/view/success_view.dart';
 import 'package:pets/app/route/app_routes.dart';
@@ -19,9 +22,9 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff7f7f7),
+      backgroundColor: AppColors.Cf7f7f7,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: InkWell(
           onTap: () {
@@ -29,12 +32,13 @@ class _OrderScreenState extends State<OrderScreen> {
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Color(0xff868686),
+            color: AppColors.C868686,
+            size: 22.sp,
           ),
         ),
         title: Text(
           "Xác nhận đơn hàng",
-          style: GoogleFonts.roboto(color: Colors.black, fontWeight: FontWeight.bold),
+          style: h5.copyWith(fontWeight: FontWeights.bold, color: AppColors.C000000),
         ),
         centerTitle: true,
       ),
@@ -45,7 +49,7 @@ class _OrderScreenState extends State<OrderScreen> {
           children: [
             Text(
               "Xác nhận đơn hàng",
-              style: GoogleFonts.roboto(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25.sp),
+              style: h5.copyWith(fontWeight: FontWeights.bold, color: AppColors.C000000),
             ),
             SizedBox(
               height: 20.h,
@@ -62,11 +66,11 @@ class _OrderScreenState extends State<OrderScreen> {
               children: [
                 Text(
                   "Phí vận chuyển",
-                  style: GoogleFonts.roboto(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 18.sp),
+                  style: h5.copyWith(fontWeight: FontWeights.regular, color: AppColors.C000000, fontSize: 18.sp),
                 ),
                 Text(
                   "đ32,000",
-                  style: GoogleFonts.roboto(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 18.sp),
+                  style: h5.copyWith(fontWeight: FontWeights.regular, color: AppColors.C000000, fontSize: 18.sp),
                 ),
               ],
             ),
@@ -81,8 +85,8 @@ class _OrderScreenState extends State<OrderScreen> {
               height: 30.h,
             ),
             Container(
-              height: 150.h,
-              decoration: BoxDecoration(color: Color(0xffD9D9D9), borderRadius: BorderRadius.circular(8.r)),
+              height: 152.h,
+              decoration: BoxDecoration(color: AppColors.CD9D9D9, borderRadius: BorderRadius.circular(8.r)),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                 child: Column(
@@ -92,11 +96,11 @@ class _OrderScreenState extends State<OrderScreen> {
                       children: [
                         Text(
                           'Giá tạm tính',
-                          style: TextStyle(color: Color(0xff787878)),
+                          style: h5.copyWith(fontWeight: FontWeights.regular, color: AppColors.C787878, fontSize: 16.sp),
                         ),
                         Text(
                           'đ365,000',
-                          style: TextStyle(color: Color(0xff787878)),
+                          style: h5.copyWith(fontWeight: FontWeights.regular, color: AppColors.C787878, fontSize: 16.sp),
                         ),
                       ],
                     ),
@@ -108,11 +112,11 @@ class _OrderScreenState extends State<OrderScreen> {
                       children: [
                         Text(
                           'Phí vận chuyển',
-                          style: TextStyle(color: Color(0xff787878)),
+                          style: h5.copyWith(fontWeight: FontWeights.regular, color: AppColors.C787878, fontSize: 16.sp),
                         ),
                         Text(
                           'đ32,000',
-                          style: TextStyle(color: Color(0xff787878)),
+                          style: h5.copyWith(fontWeight: FontWeights.regular, color: AppColors.C787878, fontSize: 16.sp),
                         ),
                       ],
                     ),
@@ -124,11 +128,11 @@ class _OrderScreenState extends State<OrderScreen> {
                       children: [
                         Text(
                           'Tổng',
-                          style: TextStyle(color: Colors.black, fontSize: 25.sp, fontWeight: FontWeight.bold),
+                          style: h5.copyWith(fontWeight: FontWeights.bold, color: AppColors.C000000, fontSize: 25.sp),
                         ),
                         Text(
                           'đ397,000',
-                          style: TextStyle(color: Colors.black, fontSize: 25.sp, fontWeight: FontWeight.bold),
+                          style: h5.copyWith(fontWeight: FontWeights.bold, color: AppColors.C000000, fontSize: 25.sp),
                         ),
                       ],
                     ),

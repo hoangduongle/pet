@@ -1,10 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/core/utils/number_utils.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/modules/serivce/widgets/BuildIndicator.dart';
+import 'package:pets/app/modules/serivce/widgets/cardFooter.dart';
+import 'package:pets/app/modules/serivce/widgets/cardPet.dart';
+import 'package:pets/app/modules/serivce/widgets/circleCard.dart';
+import 'package:pets/app/modules/serivce/widgets/paddingText.dart';
 import 'package:pets/app/route/app_routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -26,9 +33,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
-            color: Color(0xff656565),
+            color: AppColors.C656565,
           ),
           onPressed: () {},
         ),
@@ -36,22 +43,17 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           children: [
             Text(
               'Địa chỉ của bạn',
-              style: GoogleFonts.roboto(textStyle: TextStyle(color: Color(0xffACACAC), fontSize: 17.sp)),
+              style: h5.copyWith(color: AppColors.CACACAC, fontSize: 14.sp),
             ),
             Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.location_pin,
                   color: Color(0xffFF7A00),
                 ),
                 Text(
                   'Long Thạnh Mỹ, Quận 9',
-                  style: GoogleFonts.roboto(
-                      textStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20.sp,
-                    color: Color(0xffFF7A00),
-                  )),
+                  style: h4.copyWith(color: AppColors.CFF7A00, fontSize: 20.sp, fontWeight: FontWeights.bold),
                 ),
               ],
             )
@@ -61,7 +63,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: CircleAvatar(
-              radius: 25.r,
+              radius: 20.r,
               backgroundImage: const AssetImage('assets/png/avatar.png'),
             ),
           )
@@ -72,62 +74,60 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  child: Column(children: [
-                    Center(
-                      child: CarouselSlider.builder(
-                        options: CarouselOptions(
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
-                          enableInfiniteScroll: true,
-                          autoPlayInterval: const Duration(milliseconds: 3500),
-                          autoPlay: true,
-                          viewportFraction: 1,
-                        ),
-                        itemCount: 2,
-                        itemBuilder: (context, index, realIndex) {
-                          return SizedBox(
-                            height: 186.h,
-                            child: Image.asset('assets/png/slider.png'),
-                          );
+                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                child: Column(children: [
+                  Center(
+                    child: CarouselSlider.builder(
+                      options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            currentIndex = index;
+                          });
                         },
+                        enableInfiniteScroll: true,
+                        autoPlayInterval: const Duration(milliseconds: 3500),
+                        autoPlay: true,
+                        viewportFraction: 1,
                       ),
+                      itemCount: 2,
+                      itemBuilder: (context, index, realIndex) {
+                        return SizedBox(
+                          height: 186.h,
+                          child: Image.asset('assets/png/slider.png'),
+                        );
+                      },
                     ),
-                    buildIndicator(2, currentIndex),
-                  ])),
-            ),
+                  ),
+                  BuildIndicator(
+                    length: 2,
+                    currentIndex: currentIndex,
+                  ),
+                ])),
             Center(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.h),
                 child: Material(
                   elevation: 0,
-                  borderRadius: BorderRadius.circular(14.r),
+                  borderRadius: BorderRadius.circular(10.r),
                   child: InkWell(
                     onTap: () {
-                      Get.toNamed(Routes.SEARCHSERVICE);
+                      Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                        'searchText': '',
+                      });
                     },
                     child: Container(
-                      width: 367.w,
-                      height: 35.h,
-                      decoration: BoxDecoration(color: Color.fromARGB(255, 229, 229, 233), borderRadius: BorderRadius.circular(14.r)),
+                      padding: EdgeInsets.symmetric(horizontal: 50.w),
+                      width: 365.w,
+                      height: 37.h,
+                      decoration: BoxDecoration(color: AppColors.CF7F8FD, borderRadius: BorderRadius.circular(14.r)),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.search_sharp,
                             color: Color(0xffACACAC),
                           ),
-                          Text(
-                            'Tìm thứ tốt nhất cho Boss nhà bạn',
-                            style: GoogleFonts.roboto(
-                                textStyle: TextStyle(
-                              color: Color(0xffACACAC),
-                            )),
-                          ),
+                          Text('Tìm thứ tốt nhất cho Boss nhà bạn', style: h5.copyWith(color: AppColors.CB4B4B4, fontSize: 15.sp, fontWeight: FontWeights.medium)),
                         ],
                       ),
                     ),
@@ -136,53 +136,113 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               ),
             ),
             Center(
-              child: Container(
-                width: 400.w,
-                // height: 2.h,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 10),
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Material(
-                          elevation: 5,
-                          borderRadius: BorderRadius.circular(50.r),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(50.r),
-                            onTap: () {},
-                            child: Container(
-                              width: 68.w,
-                              height: 68.h,
-                              decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                            ),
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 22.w),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleCard(
+                            width: 96,
+                            text: "Thức ăn cho mèo",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Thức ăn cho mèo',
+                              });
+                            },
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.h),
-                          child: Container(
-                            child: Text(
-                              'Đồ dùng, phụ kiện',
-                              maxLines: 2,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12.sp, color: Color(0xff808080), fontWeight: FontWeight.w400),
-                            ),
+                          CircleCard(
+                            width: 96,
+                            text: "Thức ăn cho chó",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Thức ăncho chó',
+                              });
+                            },
                           ),
-                        )
-                      ],
-                    );
-                  },
-                ),
-              ),
+                          CircleCard(
+                            width: 96,
+                            text: "Đồ thường",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Đồ thường',
+                              });
+                            },
+                          ),
+                          CircleCard(
+                            width: 96,
+                            text: "Sữa tắm",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Sữa tắm',
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleCard(
+                            width: 96,
+                            text: "Đồ dùng, Phụ kiên",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Đồ dùng, Phụ kiên',
+                              });
+                            },
+                          ),
+                          CircleCard(
+                            width: 96,
+                            text: "Mèo",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Mèo',
+                              });
+                            },
+                          ),
+                          CircleCard(
+                            width: 96,
+                            text: "Chó",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Chó',
+                              });
+                            },
+                          ),
+                          CircleCard(
+                            width: 96,
+                            text: "Trợ giúp",
+                            image: 'assets/png/cat.png',
+                            ontap: () {
+                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                'searchText': 'Trợ giúp',
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
             ),
             SizedBox(
               height: 30.h,
             ),
-            paddingText('Ưu đãi nổi bật'),
-            card(),
-            paddingText('Sản phẩm nổi bật'),
-            cardPet(),
+            const PaddingText(text: 'Ưu đãi nổi bật'),
+            cardPet('Tắm vệ sinh cắt tỉa trọn gói tại nhà', 'Pet Homies', 'assets/png/cat.png', 450000, 5),
+            const PaddingText(text: 'Sản phẩm nổi bật'),
+            cardShop(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: ClipRRect(
@@ -193,7 +253,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
             SizedBox(
               height: 20.h,
             ),
-            for (int i = 0; i <= 4; i++) cardFooter(),
+            for (int i = 0; i <= 4; i++)
+              Padding(
+                padding: EdgeInsets.only(left: 20.w, top: 25.h),
+                child: CardFooter(),
+              ),
             SizedBox(
               height: 40.h,
             ),
@@ -222,232 +286,101 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     );
   }
 
-  Widget cardPet() {
-    return SizedBox(
-      height: 220.h,
-      child: GridView.builder(
-        itemCount: 3,
-        scrollDirection: Axis.horizontal,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-        ),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.only(left: 20.w),
-            child: Material(
-              child: InkWell(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () {
-                  Get.toNamed(Routes.ITEMDETAIL);
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10.r),
-                      child: Image.asset(
-                        'assets/png/cat.png',
-                        width: 152.w,
-                        height: 122.h,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 151.w,
-                      child: Text(
-                        'Giường cho mèo Light Blue Ottoman',
-                        style: TextStyle(color: const Color(0xff343434), fontWeight: FontWeight.w500, fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    SizedBox(
-                      width: 151.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Giá 450.000đ',
-                            style: TextStyle(color: const Color(0xffFF7A00), fontSize: 15.sp, fontWeight: FontWeight.bold),
+  Widget cardShop() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      child: SizedBox(
+        height: 220.h,
+        child: GridView.builder(
+          itemCount: 3,
+          scrollDirection: Axis.horizontal,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 30.w,
+            mainAxisExtent: 180.w,
+            crossAxisCount: 1,
+          ),
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.all(5.r),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7.r),
+                color: AppColors.Cf3f3f3,
+              ),
+              child: Material(
+                color: AppColors.Cf3f3f3,
+                elevation: 0,
+                child: InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () {
+                      Get.toNamed(Routes.ITEMDETAIL);
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.r),
+                          child: Image.asset(
+                            'assets/png/cat.png',
+                            height: 112,
+                            width: double.infinity,
+                            fit: BoxFit.fill,
                           ),
-                          Container(
-                            width: 24.w,
-                            height: 24.h,
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.r), color: Color(0xffFF7A00)),
-                            child: Center(
+                        ),
+                        SizedBox(
+                          height: 4.h,
+                        ),
+                        SizedBox(
+                          child: Text('Giường cho chó Oval Sofa Sofa bed', style: h6.copyWith(color: AppColors.C343434, fontSize: 15.sp)),
+                        ),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Giá ${NumberUtils.vnd(1455000)}đ',
+                              style: h6.copyWith(color: AppColors.C000000, fontSize: 15.sp, fontWeight: FontWeights.bold),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.r), color: AppColors.CFF7A00),
+                              padding: EdgeInsets.all(4.r),
                               child: Icon(
-                                Icons.shopping_cart_outlined,
-                                size: 20.r,
-                                color: Colors.white,
+                                Icons.shopping_basket_outlined,
+                                color: AppColors.Cffffff,
+                                size: 16.sp,
                               ),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                          ],
+                        ),
+                      ],
+                    )),
               ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget card() {
-    return SizedBox(
-      height: 220.h,
-      child: GridView.builder(
-        itemCount: 3,
-        scrollDirection: Axis.horizontal,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
+            );
+          },
         ),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.only(left: 20.w),
-            child: Material(
-              child: InkWell(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () {},
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10.r),
-                      child: Image.asset(
-                        'assets/png/cat.png',
-                        width: 152.w,
-                        height: 122.h,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 151.w,
-                      child: Text(
-                        'Vaccine ngừa 4 bệnh truyền nhiễm',
-                        style: TextStyle(color: const Color(0xff343434), fontWeight: FontWeight.w500, fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    SizedBox(
-                      width: 151.w,
-                      child: Text(
-                        'Pet Care Center',
-                        style: TextStyle(color: const Color(0xff7A7A7A), fontSize: 10.sp),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 6.h,
-                    ),
-                    SizedBox(
-                      width: 151.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Giá 450.000đ',
-                            style: TextStyle(color: const Color(0xffFF7A00), fontSize: 15.sp, fontWeight: FontWeight.bold),
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Color(0xffFFE600),
-                              ),
-                              Text(
-                                '5.0',
-                                style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
       ),
     );
   }
 
-  Widget cardFooter() {
+  Widget cardPet(String textTitle, String subText, String image, double price, double rate) {
     return Padding(
-      padding: EdgeInsets.only(left: 20.w, top: 20.h),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.r),
-            child: Image.asset(
-              'assets/png/petycarecenter.png',
-              width: 85.w,
-              height: 70.h,
-              fit: BoxFit.cover,
-            ),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      child: SizedBox(
+        height: 220.h,
+        child: GridView.builder(
+          itemCount: 3,
+          scrollDirection: Axis.horizontal,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 30.w,
+            mainAxisExtent: 180.w,
+            crossAxisCount: 1,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Pety Care Center",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                SizedBox(
-                  width: 180.w,
-                  child: Text(
-                    "Tư vấn sức khoẻ Online, khám lâm sàng và chích ngừa tại nhà.",
-                    style: TextStyle(fontSize: 10.sp),
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Color(0xffFFE600),
-                      size: 19.r,
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Text(
-                      '5.0',
-                      style: TextStyle(color: Color(0xff2D2D2D), fontSize: 10.sp, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 8.w,
-                    ),
-                    Text(
-                      '(99)',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10.sp,
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+          itemBuilder: (context, index) {
+            return CardPet(image: image, textTitle: textTitle, subText: subText, price: price, rate: rate);
+          },
+        ),
       ),
     );
   }

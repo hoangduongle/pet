@@ -9,10 +9,12 @@ import 'package:pets/app/core/values/text_styles.dart';
 class CircleCard extends StatelessWidget {
   final String text;
   final String image;
+  final double width;
   final Function() ontap;
   const CircleCard({
     Key? key,
     required this.text,
+    this.width = 92,
     required this.image,
     required this.ontap,
   }) : super(key: key);
@@ -20,7 +22,7 @@ class CircleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 92.w,
+      width: width.w,
       child: Column(
         children: [
           Material(

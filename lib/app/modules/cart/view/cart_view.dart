@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/font_weights.dart';
+import 'package:pets/app/core/values/text_styles.dart';
 import 'package:pets/app/core/widget/button.dart';
 import 'package:pets/app/route/app_routes.dart';
 
@@ -20,7 +23,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff7f7f7),
+      backgroundColor: AppColors.Cf7f7f7,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -30,12 +33,13 @@ class _CartScreenState extends State<CartScreen> {
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Color(0xff868686),
+            color: AppColors.C868686,
+            size: 22.sp,
           ),
         ),
         title: Text(
           "Giỏ Hàng",
-          style: GoogleFonts.roboto(color: Colors.black, fontWeight: FontWeight.bold),
+          style: h5.copyWith(fontWeight: FontWeights.bold, color: AppColors.C000000),
         ),
         centerTitle: true,
       ),
@@ -44,9 +48,10 @@ class _CartScreenState extends State<CartScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Checkbox(
-                  activeColor: Color(0xffFF7A00),
+                  activeColor: AppColors.CFF7A00,
                   value: cbAll,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
                   onChanged: (value) {
@@ -57,7 +62,7 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 Text(
                   'Chọn tất cả',
-                  style: TextStyle(color: Color(0xff595959)),
+                  style: h5.copyWith(color: AppColors.C595959, fontSize: 15.sp),
                 )
               ],
             ),
@@ -119,18 +124,19 @@ class _CartScreenState extends State<CartScreen> {
                       width: 200.w,
                       child: const Text(
                         'Combo 5 gói pate Catchy vị cá ngừ 70g',
-                        style: TextStyle(color: Color(0xff424242), fontWeight: FontWeight.bold),
+                        style: TextStyle(color: AppColors.C000000, fontWeight: FontWeights.medium),
                       ),
                     ),
                     Column(
                       children: [
                         SizedBox(
                           width: 200.w,
-                          child: const Text(
+                          child: Text(
                             'đ240,000',
-                            style: TextStyle(
-                              color: Color(0xff949494),
-                              fontWeight: FontWeight.normal,
+                            style: h5.copyWith(
+                              fontSize: 15.sp,
+                              color: AppColors.C949494,
+                              fontWeight: FontWeights.regular,
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
@@ -139,7 +145,7 @@ class _CartScreenState extends State<CartScreen> {
                           width: 200.w,
                           child: Text(
                             'đ210,000',
-                            style: TextStyle(fontSize: 25.sp, color: Color(0xffFF7A00), fontWeight: FontWeight.bold),
+                            style: h5.copyWith(fontSize: 25.sp, color: AppColors.CFF7A00, fontWeight: FontWeights.bold),
                           ),
                         ),
                       ],
@@ -149,7 +155,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             Checkbox(
-              activeColor: Color(0xffFF7A00),
+              activeColor: AppColors.CFF7A00,
               value: cbAll,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
               onChanged: (value) {},
