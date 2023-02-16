@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/modules/wellcome/controller/wellcome_controller.dart';
 import 'package:pets/app/route/app_routes.dart';
 import 'package:pets/app/core/widget/button.dart';
 
 import '../../../core/widget/SizedBoxWidget.dart';
 
-class WellcomeScreen extends StatefulWidget {
+class WellcomeScreen extends GetView<WellcomeController> {
   const WellcomeScreen({super.key});
 
-  @override
-  State<WellcomeScreen> createState() => _WellcomeScreenState();
-}
-
-class _WellcomeScreenState extends State<WellcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +47,7 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
             text: 'Đăng nhập',
             outLine: false,
             ontap: () {
+              // controller.onInit();
               Get.toNamed(Routes.LOGIN);
             },
           ),

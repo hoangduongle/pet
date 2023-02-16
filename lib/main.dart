@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pets/app/modules/wellcome/view/wellcome_view.dart';
+import 'package:pets/app/bindings/initia_bindings.dart';
 import 'package:pets/app/route/app_pages.dart';
 
 void main() async {
@@ -26,13 +26,12 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       designSize: const Size(428, 926),
       builder: (context, child) {
-        return Container(
-          child: GetMaterialApp(
-            title: "Petini",
-            debugShowCheckedModeBanner: false,
-            initialRoute: initialRoute,
-            getPages: AppPages.routes,
-          ),
+        return GetMaterialApp(
+          title: "Petini",
+          debugShowCheckedModeBanner: false,
+          initialRoute: initialRoute,
+          initialBinding: InitiaBinding(),
+          getPages: AppPages.routes,
         );
       },
     );

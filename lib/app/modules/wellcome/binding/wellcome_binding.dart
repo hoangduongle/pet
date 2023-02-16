@@ -5,5 +5,6 @@ class WellcomeBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<WellcomeController>(() => WellcomeController());
+
   }
 }

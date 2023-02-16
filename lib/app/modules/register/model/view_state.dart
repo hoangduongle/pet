@@ -1,0 +1,4 @@
+enum ViewState {
+  normal,
+  registerSuccess,
+}

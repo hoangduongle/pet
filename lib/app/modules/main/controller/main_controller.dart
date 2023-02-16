@@ -7,7 +7,7 @@ import 'package:pets/app/modules/serivce/view/service_view.dart';
 import 'package:pets/app/modules/shopping/controller/shopping_controller.dart';
 import 'package:pets/app/modules/shopping/view/shopping_view.dart';
 
-class MainController extends GetxController {
+class MainController extends BaseController {
   late ServiceController _serviceController;
   late AdoptController _adoptController;
   late ShoppingController _shoppingController;

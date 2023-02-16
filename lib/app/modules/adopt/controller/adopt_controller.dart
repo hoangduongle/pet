@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class AdoptController extends GetxController {
+class AdoptController extends BaseController {
   @override
   void onInit() async {
     init();

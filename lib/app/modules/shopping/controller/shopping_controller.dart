@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class ShoppingController extends GetxController {
+class ShoppingController extends BaseController {
   @override
   void onInit() async {
     init();

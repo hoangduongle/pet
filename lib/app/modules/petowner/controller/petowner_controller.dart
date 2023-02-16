@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
 
-class PetOwnerController extends GetxController{
+class PetOwnerController extends BaseController{
   
 }
