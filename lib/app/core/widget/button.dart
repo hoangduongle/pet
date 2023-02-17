@@ -38,6 +38,8 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius.r),
           child: InkWell(
             onTap: ontap,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

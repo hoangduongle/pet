@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pets/app/modules/adopt/controller/adopt_controller.dart';
 import 'package:pets/app/modules/adopt/view/adopt_view.dart';
+import 'package:pets/app/modules/menu/controller/menutab_controller.dart';
+import 'package:pets/app/modules/menu/view/menu_view.dart';
 import 'package:pets/app/modules/serivce/controller/service_controller.dart';
 import 'package:pets/app/modules/serivce/view/service_view.dart';
 import 'package:pets/app/modules/shopping/controller/shopping_controller.dart';
+import 'package:pets/app/core/base/base_controller.dart';
 import 'package:pets/app/modules/shopping/view/shopping_view.dart';
 
 class MainController extends BaseController {
   late ServiceController _serviceController;
   late AdoptController _adoptController;
   late ShoppingController _shoppingController;
+  late MenuTabController _menuController;
 
   var currentTab = 0.obs;
 
@@ -18,7 +22,7 @@ class MainController extends BaseController {
     const ServiceScreen(),
     const AdoptScreen(),
     const ShoppingScreen(),
-    const ShoppingScreen(),
+    const MenuScreen(),
   ];
 
   PageStorageBucket bucket = PageStorageBucket();
@@ -51,6 +55,13 @@ class MainController extends BaseController {
     );
     _shoppingController = Get.find<ShoppingController>();
     _shoppingController.init();
+
+    Get.put(
+      MenuTabController(),
+      permanent: true,
+    );
+    _menuController = Get.find<MenuTabController>();
+    _menuController.init();
   }
 
   void changeTab(int index) {

@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/core/widget/button.dart';
+import 'package:pets/app/route/app_routes.dart';
 
 import '../../serivce/widgets/cardFooter.dart';
 
@@ -49,7 +51,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                     children: [
                       Icon(
                         Icons.check_circle_rounded,
-                        color: Color(0xffFF7A00),
+                        color: AppColors.CFF7A00,
                         size: 40.sp,
                       ),
                       SizedBox(
@@ -57,16 +59,20 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                       ),
                       Text(
                         'Đã xác thực',
-                        style: TextStyle(color: Color(0xffFF7A00), fontWeight: FontWeight.bold, fontSize: 25.sp),
+                        style: TextStyle(
+                            color: AppColors.CFF7A00,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.sp),
                       ),
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
                     height: 34.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4.r),
-                      color: Color(0xfffffade),
+                      color: const Color(0xfffffade),
                     ),
                     child: Row(
                       children: [
@@ -80,31 +86,38 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                         ),
                         Text(
                           '4.9',
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)),
+                          style: h5.copyWith(
+                              fontSize: 17.sp,
+                              fontWeight: FontWeights.bold,
+                              color: AppColors.C2D2D2D),
                         )
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
                     height: 34.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4.r),
-                      color: Color(0xffffd0d0),
+                      color: const Color(0xffffd0d0),
                     ),
                     child: Row(
                       children: [
                         Icon(
                           Icons.star,
                           size: 20.sp,
-                          color: Color(0xffe78a00),
+                          color: const Color(0xffe78a00),
                         ),
                         SizedBox(
                           width: 5.w,
                         ),
                         Text(
                           '10+',
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)),
+                          style: h5.copyWith(
+                              fontSize: 17.sp,
+                              fontWeight: FontWeights.bold,
+                              color: AppColors.C2D2D2D),
                         )
                       ],
                     ),
@@ -116,7 +129,8 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
               padding: EdgeInsets.only(left: 25.w),
               child: Text(
                 'Petini Care',
-                style: h5.copyWith(fontWeight: FontWeights.bold, fontSize: 22.sp),
+                style:
+                    h5.copyWith(fontWeight: FontWeights.bold, fontSize: 22.sp),
               ),
             ),
             SizedBox(
@@ -127,7 +141,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
               width: 320.w,
               child: Text(
                 'Pet Hour / Day care & Month care - Home care service Pet Playground & Pet Bathing - Hotel',
-                style: h6.copyWith(color: AppColors.C838383, fontSize: 12.sp, fontWeight: FontWeights.regular),
+                style: h6.copyWith(
+                    color: AppColors.C838383,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeights.regular),
               ),
             ),
             Padding(
@@ -149,14 +166,18 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                     children: [
                       Text(
                         '4.9',
-                        style: h6.copyWith(fontSize: 30.sp, fontWeight: FontWeights.bold),
+                        style: h6.copyWith(
+                            fontSize: 30.sp, fontWeight: FontWeights.bold),
                       ),
                       SizedBox(
                         width: 10.w,
                       ),
                       Text(
                         '35 đánh giá',
-                        style: h6.copyWith(fontSize: 18.sp, fontWeight: FontWeights.bold, color: AppColors.C8E8E8E),
+                        style: h6.copyWith(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeights.bold,
+                            color: AppColors.C8E8E8E),
                       ),
                     ],
                   ),
@@ -175,88 +196,19 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
             SizedBox(
               height: 10.h,
             ),
-            for (int i = 0; i < 5; i++)
-              Padding(
-                padding: EdgeInsets.only(left: 25.w, top: 20.h),
-                child: CardFooter(),
-              ),
+            // for (int i = 0; i < 5; i++)
+            //   Padding(
+            //     padding: EdgeInsets.only(left: 25.w, top: 20.h),
+            //     child: CardFooter(),
+            //   ),
+            Button(text: 'Click', outLine: false, ontap: () {
+              Get.toNamed(Routes.SERVICESELECT);
+            },),
             SizedBox(
               height: 60.h,
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget cardFooter() {
-    return Padding(
-      padding: EdgeInsets.only(left: 20.w, top: 20.h),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.r),
-            child: Image.asset(
-              'assets/png/petycarecenter.png',
-              width: 85.w,
-              height: 70.h,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Pety Care Center",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                SizedBox(
-                  width: 180.w,
-                  child: Text(
-                    "Tư vấn sức khoẻ Online, khám lâm sàng và chích ngừa tại nhà.",
-                    style: TextStyle(fontSize: 10.sp),
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Color(0xffFFE600),
-                      size: 19.r,
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Text(
-                      '5.0',
-                      style: TextStyle(color: Color(0xff2D2D2D), fontSize: 10.sp, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 8.w,
-                    ),
-                    Text(
-                      '(99)',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10.sp,
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

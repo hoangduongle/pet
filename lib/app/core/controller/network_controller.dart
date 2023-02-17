@@ -44,6 +44,10 @@ class NetworkController {
         _showDisconnect();
         connectionStatus.value = 0;
         break;
+      case ConnectivityResult.vpn:
+        break;
+      case ConnectivityResult.other:
+        break;
     }
   }
 

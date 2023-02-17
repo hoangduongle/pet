@@ -1,8 +1,11 @@
 // ignore_for_file: avoid_print, unused_field, unused_local_variable
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
+import 'package:pets/app/core/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/date_time_utils.dart';
@@ -17,7 +20,9 @@ class TokenManager extends Interceptor {
   static const baseURL = 'https://petiny.azurewebsites.net/api/';
 
   String? _token;
+  User? _user;
 
+  User? get user => _user;
   String get token {
     checkTokenValid();
     return _token ?? '';
@@ -26,6 +31,10 @@ class TokenManager extends Interceptor {
   bool get hasToken {
     checkTokenValid();
     return _token != null && _token.toString().isNotEmpty;
+  }
+
+  bool get hasUser {
+    return _user != null ? true : false;
   }
 
   Future<void> saveToken(String? token) async {
@@ -43,6 +52,11 @@ class TokenManager extends Interceptor {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('token', response.data);
     _token = prefs.getString('token');
+
+    String? userJson = prefs.getString('userJson');
+    if (userJson != null) {
+      _user = User.fromJson(json.decode(userJson.toString()));
+    }
   }
 
   @override
@@ -64,6 +78,18 @@ class TokenManager extends Interceptor {
     var prefs = await SharedPreferences.getInstance();
     _token = null;
     await prefs.remove('token');
+  }
+
+  Future<void> saveUser(String? token) async {
+    var prefs = await SharedPreferences.getInstance();
+
+    Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
+    String userJson = json.encode(payload);
+
+    if (userJson.isNotEmpty) {
+      _user = User.fromJson(json.decode(userJson.toString()));
+      await prefs.setString('userJson', userJson);
+    }
   }
 
   Future<void> savePhonePassword(

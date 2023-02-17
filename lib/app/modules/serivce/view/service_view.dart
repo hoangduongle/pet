@@ -1,10 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
@@ -13,7 +10,6 @@ import 'package:pets/app/modules/serivce/widgets/cardPet.dart';
 import 'package:pets/app/modules/serivce/widgets/circleCard.dart';
 import 'package:pets/app/modules/serivce/widgets/paddingText.dart';
 import 'package:pets/app/route/app_routes.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../widgets/cardFooter.dart';
 
@@ -56,7 +52,10 @@ class _ServiceScreenState extends State<ServiceScreen> {
                 ),
                 Text(
                   'Long Thạnh Mỹ, Quận 9',
-                  style: h4.copyWith(color: AppColors.CFF7A00, fontSize: 20.sp, fontWeight: FontWeights.bold),
+                  style: h4.copyWith(
+                      color: AppColors.CFF7A00,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeights.bold),
                 ),
               ],
             )
@@ -122,7 +121,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 50.w),
                       width: 365.w,
                       height: 37.h,
-                      decoration: BoxDecoration(color: AppColors.CF7F8FD, borderRadius: BorderRadius.circular(14.r)),
+                      decoration: BoxDecoration(
+                          color: AppColors.CF7F8FD,
+                          borderRadius: BorderRadius.circular(14.r)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -130,7 +131,11 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             Icons.search_sharp,
                             color: Color(0xffACACAC),
                           ),
-                          Text('Tìm kiếm dịch vụ và phòng khám', style: h5.copyWith(color: AppColors.CB4B4B4, fontSize: 15.sp, fontWeight: FontWeights.medium)),
+                          Text('Tìm kiếm dịch vụ và phòng khám',
+                              style: h5.copyWith(
+                                  color: AppColors.CB4B4B4,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeights.medium)),
                         ],
                       ),
                     ),
@@ -212,18 +217,14 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             text: "Ưu đãi",
                             image: 'assets/png/cat.png',
                             ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': '',
-                              });
+                              Get.toNamed(Routes.PROMOTION);
                             },
                           ),
                           CircleCard(
                             text: "Trợ giúp",
                             image: 'assets/png/cat.png',
                             ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Trợ giúp',
-                              });
+                              Get.toNamed(Routes.SUPPORT);
                             },
                           ),
                         ],
@@ -235,11 +236,14 @@ class _ServiceScreenState extends State<ServiceScreen> {
               height: 30.h,
             ),
             const PaddingText(text: 'Dịch vụ nổi bật'),
-            cardPet('Tắm vệ sinh cắt tỉa trọn gói tại nhà', 'Pet Homies', 'assets/png/cat.png', 450000, 5),
+            cardPet('Tắm vệ sinh cắt tỉa trọn gói tại nhà', 'Pet Homies',
+                'assets/png/cat.png', 450000, 5),
             const PaddingText(text: 'Vaccine cần thiết cho thú cưng'),
-            cardPet('Vaccine ngừa 4 bệnh truyền nhiễm', 'Pet Care Center', 'assets/png/cat.png', 450000, 4.9),
+            cardPet('Vaccine ngừa 4 bệnh truyền nhiễm', 'Pet Care Center',
+                'assets/png/cat.png', 450000, 4.9),
             const PaddingText(text: 'Dịch vụ tận nhà'),
-            cardPet('Tắm & Xịt dưỡng cho chó (không vệ sinh)', 'Chuyên viên', 'assets/png/cat.png', 130000, 5),
+            cardPet('Tắm & Xịt dưỡng cho chó (không vệ sinh)', 'Chuyên viên',
+                'assets/png/cat.png', 130000, 5),
             const PaddingText(text: 'Sen đi làm xa, có Hotel lo nha !'),
             cardPet('Day care', 'Pet Homies', 'assets/png/cat.png', 150000, 5),
             Padding(
@@ -266,7 +270,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
     );
   }
 
-  Widget cardPet(String textTitle, String subText, String image, double price, double rate) {
+  Widget cardPet(String textTitle, String subText, String image, double price,
+      double rate) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: SizedBox(
@@ -280,7 +285,12 @@ class _ServiceScreenState extends State<ServiceScreen> {
             crossAxisCount: 1,
           ),
           itemBuilder: (context, index) {
-            return CardPet(image: image, textTitle: textTitle, subText: subText, price: price, rate: rate);
+            return CardPet(
+                image: image,
+                textTitle: textTitle,
+                subText: subText,
+                price: price,
+                rate: rate);
           },
         ),
       ),

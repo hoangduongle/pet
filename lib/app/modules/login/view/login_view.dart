@@ -5,19 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/modules/login/controller/login_controller.dart';
 import 'package:pets/app/route/app_routes.dart';
 import 'package:pets/app/core/widget/button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends GetView<LoginController> {
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController phoneNumberController = new TextEditingController();
-  TextEditingController pwdController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +33,24 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: EdgeInsets.all(25.r),
               child: TextField(
-                controller: phoneNumberController,
+                controller: controller.phoneNumberController,
+
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Số điện thoại', border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
+                decoration: InputDecoration(
+                    labelText: 'Số điện thoại',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.r))),
               ),
             ),
             Padding(
               padding: EdgeInsets.all(25.r),
               child: TextField(
                 obscureText: true,
-                controller: pwdController,
-                decoration: InputDecoration(labelText: 'Mật khẩu', border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r))),
+                controller: controller.pwdController,
+                decoration: InputDecoration(
+                    labelText: 'Mật khẩu',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.r))),
               ),
             ),
             Padding(
@@ -86,11 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
               text: 'Đăng nhập',
               outLine: false,
               ontap: () {
-                var phoneNumber = phoneNumberController.text;
-                var pwd = pwdController.text;
-                print('SDT:$phoneNumber PWD:$pwd');
-                
-                Get.toNamed(Routes.MAIN);
+                controller.submit();
               },
             ),
             SizedBox(

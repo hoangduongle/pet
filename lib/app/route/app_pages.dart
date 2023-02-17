@@ -10,6 +10,7 @@ import 'package:pets/app/modules/itemDetail/view/itemDetail_view.dart';
 import 'package:pets/app/modules/login/binding/login_binding.dart';
 import 'package:pets/app/modules/main/binding/main_binding.dart';
 import 'package:pets/app/modules/main/view/main_view.dart';
+import 'package:pets/app/modules/menu/view/menu_view.dart';
 import 'package:pets/app/modules/order/binding/order_binding.dart';
 import 'package:pets/app/modules/order/view/order_view.dart';
 import 'package:pets/app/modules/petadopt/binding/petadopt_binding.dart';
@@ -20,6 +21,8 @@ import 'package:pets/app/modules/petinfo/binding/petinfo_binding.dart';
 import 'package:pets/app/modules/petinfo/view/petinfo_view.dart';
 import 'package:pets/app/modules/petowner/binding/petowner_binding.dart';
 import 'package:pets/app/modules/petowner/view/petowner_view.dart';
+import 'package:pets/app/modules/promotion/binding/promotion_binding.dart';
+import 'package:pets/app/modules/promotion/view/promotion_view.dart';
 import 'package:pets/app/modules/register/binding/register_binding.dart';
 import 'package:pets/app/modules/register/view/register_view.dart';
 import 'package:pets/app/modules/searchService/binding/searchService_binding.dart';
@@ -28,10 +31,17 @@ import 'package:pets/app/modules/serivce/binding/service_binding.dart';
 import 'package:pets/app/modules/serivce/view/service_view.dart';
 import 'package:pets/app/modules/serviceDetail/binding/serviceDetail_binding.dart';
 import 'package:pets/app/modules/serviceDetail/view/serviceDetail_view.dart';
+import 'package:pets/app/modules/serviceSelect/binding/serviceSelect_binding.dart';
+import 'package:pets/app/modules/serviceSelect/view/serviceSelect_view.dart';
+import 'package:pets/app/modules/setting/binding/setting_binding.dart';
+import 'package:pets/app/modules/setting/view/setting_view.dart';
 import 'package:pets/app/modules/shopping/binding/shopping_binding.dart';
 import 'package:pets/app/modules/shopping/view/shopping_view.dart';
+import 'package:pets/app/modules/support/binding/support_binding.dart';
+import 'package:pets/app/modules/support/view/support_view.dart';
 import 'package:pets/app/modules/wellcome/binding/wellcome_binding.dart';
 import 'package:pets/app/route/app_routes.dart';
+import '../modules/menu/binding/menu_binding.dart';
 import '../modules/wellcome/view/wellcome_view.dart';
 
 import '../modules/login/view/login_view.dart';
@@ -142,6 +152,36 @@ class AppPages {
       name: '/shopping',
       page: () => ShoppingScreen(),
       binding: ShoppingBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: '/support',
+      page: () => SupportScreen(),
+      binding: SupportBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: '/promotion',
+      page: () => PromotionScreen(),
+      binding: PromotionBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: '/menu',
+      page: () => MenuScreen(),
+      binding: MenuBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: '/setting',
+      page: () => SettingScreen(),
+      binding: SettingBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: '/serviceselect',
+      page: () => ServiceSelectScreen(),
+      binding: ServiceSelectBinding(),
       transition: Transition.noTransition,
     ),
   ];

@@ -7,7 +7,7 @@ import 'package:pets/app/core/controller/network_controller.dart';
 
 import '/app/core/model/page_state.dart';
 
-abstract class BaseController extends BaseController {
+abstract class BaseController extends GetxController {
   get networkStatus => NetworkController.intance.connectionStatus;
 
   //Reload the page
