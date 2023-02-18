@@ -11,7 +11,7 @@ class LoginController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
 
   final formKey = GlobalKey<FormState>();
-
+  Rx<User?> userContent = Rx<User?>(null);
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
 
@@ -24,27 +24,29 @@ class LoginController extends BaseController {
     pageLoading.value = true;
     var loginService =
         _repository.login(phoneNumberController.text, pwdController.text);
-    // await callDataService(
-    //   loginService,
-    //   onSuccess: (User? response) {
-    //     debugPrint(response?.name);
-    //   },
-    //   onError: (DioError dioError) {
-    //     var response = dioError.response;
+    await callDataService(
+      loginService,
+      onSuccess: (User? response) {
+        userContent(response);
+      },
+      onError: (DioError dioError) {
+        var response = dioError.response;
 
-    //     if (response != null &&
-    //         response.data.toString().isNotEmpty &&
-    //         response.data['detail'] == 'Invalid user name or password') {}
-    //   },
-    // );
+        if (response != null &&
+            response.data.toString().isNotEmpty &&
+            response.data['detail'] == 'Invalid user name or password') {}
+      },
+    );
     await Future.delayed(const Duration(seconds: 1));
 
-    // TokenManager.instance.savePhonePassword(
-    //   phoneNumberController.text,
-    //   pwdController.text,
-    // );
+    TokenManager.instance.savePhonePassword(
+      phoneNumberController.text,
+      pwdController.text,
+    );
     pageLoading.value = false;
-    Get.offAllNamed('${Routes.MAIN}?appInit=true');
+    if (userContent != null) {
+      Get.offAllNamed(Routes.MAIN);
+    }
   }
 
   void aa() {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pets/app/core/utils/number_utils.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
@@ -108,6 +109,23 @@ class PromotionScreen extends GetView<PromotionController> {
             SizedBox(
               height: 20.h,
             ),
+            _voucher(
+                'https://i.pinimg.com/564x/99/bc/a7/99bca79553b34d44465fdbb92307b832.jpg',
+                "Pet Homie",
+                20000,
+                'Cho hóa đơn từ 150k',
+                'Đến 26-02-2023',
+                39),
+            SizedBox(
+              height: 30.h,
+            ),
+            _voucher(
+                'https://i.pinimg.com/564x/00/0e/0f/000e0f98504fec8a90fa2c2d871381e6.jpg',
+                "Pet Homie",
+                20000,
+                'Cho hóa đơn từ 150k',
+                'Đến 26-02-2023',
+                100)
           ],
         ),
       ),
@@ -115,7 +133,7 @@ class PromotionScreen extends GetView<PromotionController> {
   }
 
   Widget _voucher(String image, String titleText, double discountPrice,
-      String condition, String deadline) {
+      String condition, String deadline, int percent) {
     return Container(
       height: 240.h,
       decoration: BoxDecoration(
@@ -135,8 +153,10 @@ class PromotionScreen extends GetView<PromotionController> {
                   child: Image.network(
                     image,
                     // 'https://i.pinimg.com/564x/9e/05/fa/9e05faa8512924dc4fae42c49192150c.jpg',
+                    
                     width: 80.w,
                     height: 80.h,
+
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -155,7 +175,7 @@ class PromotionScreen extends GetView<PromotionController> {
                       height: 10.h,
                     ),
                     Text(
-                      'Giảm ${discountPrice}đ',
+                      'Giảm ${NumberUtils.vnd(discountPrice)}đ',
                       style: h6.copyWith(
                           color: Colors.black,
                           fontSize: 20.sp,
@@ -202,10 +222,11 @@ class PromotionScreen extends GetView<PromotionController> {
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     child: LinearProgressIndicator(
-                      value: 0.39.r,
+                      value: percent * 0.01,
                       backgroundColor: const Color(0xffFFCFA4),
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                          Color(0xffFF5E03)),
+                      valueColor: AlwaysStoppedAnimation<Color>(percent == 100
+                          ? Color(0xff818181).withOpacity(0.8)
+                          : Color(0xffFF5E03)),
                     ),
                   ),
                 ),
@@ -214,7 +235,7 @@ class PromotionScreen extends GetView<PromotionController> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Đã thu thập 39%",
+                      "Đã thu thập ${percent}%",
                       style: h6.copyWith(fontSize: 15.sp, color: Colors.white),
                     ),
                   ),
@@ -230,6 +251,7 @@ class PromotionScreen extends GetView<PromotionController> {
             child: Align(
               alignment: Alignment.centerRight,
               child: Button(
+                color: percent == 100 ? Color(0xffA6A6A6) : Color(0xffFF7A00),
                 width: 100.w,
                 height: 40.h,
                 text: 'Thu thập',

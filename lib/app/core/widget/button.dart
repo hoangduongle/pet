@@ -9,6 +9,7 @@ class Button extends StatelessWidget {
   double borderRadius;
   double fontSize;
   bool outLine;
+  Color color;
   void Function()? ontap;
 
   Button({
@@ -19,6 +20,7 @@ class Button extends StatelessWidget {
     this.borderRadius = 15,
     this.fontSize = 18,
     required this.outLine,
+    this.color = const Color(0xffFF7A00),
     required this.ontap,
   }) : super(key: key);
 
@@ -31,7 +33,7 @@ class Button extends StatelessWidget {
         padding: EdgeInsets.all(1.5.r),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius.r),
-          color: const Color(0xffFF7A00),
+          color: color,
         ),
         child: Material(
           color: outLine ? Colors.white : Colors.transparent,
@@ -45,7 +47,11 @@ class Button extends StatelessWidget {
               children: [
                 Text(
                   text,
-                  style: GoogleFonts.montserrat(textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: fontSize.sp, color: outLine ? const Color(0xffFF7A00) : Colors.white)),
+                  style: GoogleFonts.montserrat(
+                      textStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: fontSize.sp,
+                          color: outLine ? color : Colors.white)),
                 ),
               ],
             ),

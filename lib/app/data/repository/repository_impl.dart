@@ -1,6 +1,8 @@
 // ignore_for_file: unused_element, unused_local_variable, unnecessary_brace_in_string_interps, await_only_futures
 import 'package:dio/dio.dart';
 import 'package:pets/app/core/base/base_repository.dart';
+import 'package:pets/app/core/model/animalType.dart';
+import 'package:pets/app/core/model/owner.dart';
 import 'package:pets/app/core/model/user.dart';
 import 'package:pets/app/core/network/dio_provider.dart';
 import 'package:pets/app/data/repository/repository.dart';
@@ -32,7 +34,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
       'phone': phoneNumber,
       'password': password,
     };
-    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    var dioCall = dioTokenClient.post(endpoint, queryParameters: data);
     try {
       return callApi(dioCall).then((response) => User.fromJson(response.data));
     } catch (e) {
@@ -42,15 +44,48 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<int> register(User user) {
-    // if (!TokenManager.instance.hasToken) {
-    //   await TokenManager.instance.init();
-    // }
     var endpoint = "${DioProvider.baseUrl}/Users";
     var data = user.toJson();
     var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
         return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<AnimalType>> getAnimalType() {
+    var endpoint = "${DioProvider.baseUrl}/AnimalTypes";
+    var dioCall = dioTokenClient.get(endpoint);
+    var result = <AnimalType>[];
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <AnimalType>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(AnimalType.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Owner>> getPetOwner() {
+    var endpoint = "${DioProvider.baseUrl}/Owners";
+    var dioCall = dioTokenClient.get(endpoint);
+    var result = <Owner>[];
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <Owner>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(Owner.fromJson(element));
+        }
+        return result;
       });
     } catch (e) {
       rethrow;

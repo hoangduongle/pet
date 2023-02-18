@@ -28,6 +28,18 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(Routes.CART);
+        },
+        backgroundColor: Colors.white.withOpacity(0.8),
+        elevation: 2,
+        // ignore: prefer_const_constructors
+        child: Icon(
+          Icons.shopping_cart_checkout_rounded,
+          color: Colors.black,
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

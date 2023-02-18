@@ -2,26 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/widget/button.dart';
+import 'package:pets/app/modules/petadoptDetail/controller/petadoptDetail_controller.dart';
 
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/text_styles.dart';
 
-class DetailAdopt extends StatefulWidget {
-  const DetailAdopt({super.key});
-
-  @override
-  State<DetailAdopt> createState() => _DetailAdoptState();
-}
-
 const List<String> listType = <String>['Tam thể ', 'T', 'A', 'B'];
-const List<String> listAge = <String>['1 tháng', '5 tháng', '10 tháng', '16 tháng'];
+const List<String> listAge = <String>[
+  '1 tháng',
+  '5 tháng',
+  '10 tháng',
+  '16 tháng'
+];
 
-class _DetailAdoptState extends State<DetailAdopt> {
+class DetailAdopt extends GetView<PetAdoptDetailController> {
   @override
   Widget build(BuildContext context) {
+    controller.onInit();
     String dropdownValueType = listType.first;
     String dropdownValueAge = listAge.first;
 
@@ -32,39 +33,52 @@ class _DetailAdoptState extends State<DetailAdopt> {
               child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: Text(
-                    "Bạn muốn nhận nuôi mèo ư ?",
-                    style: h6.copyWith(color: AppColors.C000000, fontSize: 16.sp, fontWeight: FontWeights.medium),
+                    "Bạn muốn nhận nuôi ${controller.animalTypeName} ư ?",
+                    style: h6.copyWith(
+                        color: AppColors.C000000,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeights.medium),
                   ))),
           Padding(
             padding: EdgeInsets.only(left: 15.w, right: 15.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text("Giống thú cưng", style: h6.copyWith(color: AppColors.C656565, fontSize: 15.sp)),
+                Text("Giống thú cưng",
+                    style:
+                        h6.copyWith(color: AppColors.C656565, fontSize: 15.sp)),
                 Container(
-                  decoration: BoxDecoration(color: AppColors.Cffffff, borderRadius: BorderRadius.circular(20.r)),
+                  decoration: BoxDecoration(
+                      color: AppColors.Cffffff,
+                      borderRadius: BorderRadius.circular(20.r)),
                   width: 130.w,
                   height: 35.h,
                   child: InputDecorator(
-                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))), contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.r))),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                        style: h5.copyWith(fontSize: 15.sp, color: AppColors.C656565, fontWeight: FontWeights.medium),
+                        style: h5.copyWith(
+                            fontSize: 15.sp,
+                            color: AppColors.C656565,
+                            fontWeight: FontWeights.medium),
                         borderRadius: BorderRadius.circular(20.r),
                         value: dropdownValueType,
                         isDense: true,
                         isExpanded: true,
-                        items: listType.map<DropdownMenuItem<String>>((String value) {
+                        items: listType
+                            .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
                           );
                         }).toList(),
                         onChanged: (value) {
-                          setState(() {
-                            debugPrint(value);
-                            dropdownValueType = value!;
-                          });
+                          debugPrint(value);
+                          dropdownValueType = value!;
                         },
                       ),
                     ),
@@ -75,28 +89,36 @@ class _DetailAdoptState extends State<DetailAdopt> {
                   style: h6.copyWith(color: AppColors.C656565, fontSize: 15.sp),
                 ),
                 Container(
-                  decoration: BoxDecoration(color: AppColors.Cffffff, borderRadius: BorderRadius.circular(20.r)),
+                  decoration: BoxDecoration(
+                      color: AppColors.Cffffff,
+                      borderRadius: BorderRadius.circular(20.r)),
                   width: 110.w,
                   height: 35.h,
                   child: InputDecorator(
-                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))), contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.r))),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10.w)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                        style: h5.copyWith(fontSize: 15.sp, color: AppColors.C656565, fontWeight: FontWeights.medium),
+                        style: h5.copyWith(
+                            fontSize: 15.sp,
+                            color: AppColors.C656565,
+                            fontWeight: FontWeights.medium),
                         borderRadius: BorderRadius.circular(20.r),
                         value: dropdownValueAge,
                         isDense: true,
                         isExpanded: true,
-                        items: listAge.map<DropdownMenuItem<String>>((String value) {
+                        items: listAge
+                            .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
                           );
                         }).toList(),
                         onChanged: (value) {
-                          setState(() {
-                            dropdownValueAge = value!;
-                          });
+                          dropdownValueAge = value!;
                         },
                       ),
                     ),
@@ -109,7 +131,7 @@ class _DetailAdoptState extends State<DetailAdopt> {
             height: 20.h,
           ),
           Align(
-            alignment: Alignment(0.9, 1),
+            alignment: const Alignment(0.9, 1),
             child: Button(
               width: 120.w,
               height: 35.h,
@@ -123,8 +145,10 @@ class _DetailAdoptState extends State<DetailAdopt> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h),
             child: Text(
-              "Các bé mèo đang đợi bạn nè :3",
-              style: GoogleFonts.roboto(textStyle: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff656565))),
+              "Các bé ${controller.animalTypeName == 'Chó' ? 'Cún' : controller.animalTypeName} đang đợi bạn nè :3",
+              style: GoogleFonts.roboto(
+                  textStyle: const TextStyle(
+                      fontWeight: FontWeight.w600, color: Color(0xff656565))),
             ),
           ),
           Expanded(
@@ -132,7 +156,11 @@ class _DetailAdoptState extends State<DetailAdopt> {
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: GridView.builder(
               itemCount: 6,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20.w, mainAxisSpacing: 20.h, mainAxisExtent: 260.h),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20.w,
+                  mainAxisSpacing: 20.h,
+                  mainAxisExtent: 260.h),
               itemBuilder: (context, index) {
                 return Material(
                   elevation: 5,
@@ -142,7 +170,11 @@ class _DetailAdoptState extends State<DetailAdopt> {
                     onTap: () {},
                     child: Column(
                       children: [
-                        ClipRRect(borderRadius: BorderRadius.only(topLeft: Radius.circular(20.r), topRight: Radius.circular(20.r)), child: Image.asset('assets/png/cat.png')),
+                        ClipRRect(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20.r),
+                                topRight: Radius.circular(20.r)),
+                            child: Image.asset('assets/png/cat.png')),
                         Padding(
                           padding: EdgeInsets.only(left: 15.w, top: 10.h),
                           child: Column(
@@ -151,7 +183,7 @@ class _DetailAdoptState extends State<DetailAdopt> {
                               Text(
                                 'Mèo Anh lông dài',
                                 style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                   color: Color(0xffFF7A00),
                                   fontWeight: FontWeight.bold,
                                 )),
@@ -193,7 +225,6 @@ class _DetailAdoptState extends State<DetailAdopt> {
               },
             ),
           )),
-          
         ],
       ),
     );

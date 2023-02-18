@@ -5,6 +5,12 @@ import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
 import 'package:pets/app/modules/menu/controller/menutab_controller.dart';
+import 'package:pets/app/modules/menu/view/following.dart';
+import 'package:pets/app/modules/menu/view/help.dart';
+import 'package:pets/app/modules/menu/view/historycart_view.dart';
+import 'package:pets/app/modules/menu/view/postsave_view.dart';
+import 'package:pets/app/modules/menu/view/setting.dart';
+import 'package:pets/app/modules/menu/view/ususally_service.dart';
 
 class MenuScreen extends GetView<MenuTabController> {
   const MenuScreen({super.key});
@@ -105,14 +111,25 @@ class MenuScreen extends GetView<MenuTabController> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                 child: Column(
                   children: [
-                    _list('Bài viết đã lưu', Icons.bookmark_border, () {}),
+                    _list('Đơn đã mua', Icons.shopping_bag_rounded, () {
+                      Get.to(() => HistoryCartScreen(),
+                          transition: Transition.rightToLeft);
+                    }),
                     _divider(),
-                    _list('Dịch vụ hay dùng', Icons.bookmark_border, () {}),
+                    _list('Bài viết đã lưu', Icons.bookmark_border, () {
+                      Get.to(() => PostSaveScreen(),
+                          transition: Transition.rightToLeft);
+                    }),
                     _divider(),
-                    _list(
-                        'Báo mất thú cưng', Icons.warning_amber_rounded, () {}),
+                    _list('Dịch vụ hay dùng', Icons.bookmark_border, () {
+                      Get.to(() => UsuallyServiceScreen(),
+                          transition: Transition.rightToLeft);
+                    }),
                     _divider(),
-                    _list('Đang theo dõi', Icons.people_outline, () {}),
+                    _list('Đang theo dõi', Icons.people_outline, () {
+                      Get.to(() => FollowingScreen(),
+                          transition: Transition.rightToLeft);
+                    }),
                   ],
                 ),
               ),
@@ -127,9 +144,15 @@ class MenuScreen extends GetView<MenuTabController> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                 child: Column(
                   children: [
-                    _list('Cài đặt', Icons.settings, () {}),
+                    _list('Cài đặt', Icons.settings, () {
+                      Get.to(() => SettingScreen(),
+                          transition: Transition.rightToLeft);
+                    }),
                     _divider(),
-                    _list('Trợ giúp', Icons.help_outline_sharp, () {}),
+                    _list('Trợ giúp', Icons.help_outline_sharp, () {
+                      Get.to(() => HelpScreen(),
+                          transition: Transition.rightToLeft);
+                    }),
                   ],
                 ),
               ),
@@ -155,7 +178,6 @@ class MenuScreen extends GetView<MenuTabController> {
       margin: EdgeInsetsDirectional.only(start: 1.r, end: 1.r),
       height: 1.0,
       color: Colors.grey.withOpacity(0.8.r),
-      
     );
   }
 

@@ -19,7 +19,6 @@ abstract class Routes {
   static const SUPPORT = _Paths.SUPPORT;
   static const PROMOTION = _Paths.PROMOTION;
   static const MENU = _Paths.MENU;
-  static const SETTING = _Paths.SETTING;
   static const SERVICESELECT = _Paths.SERVICESELECT;
 }
 
@@ -44,6 +43,5 @@ abstract class _Paths {
   static const SUPPORT = '/support';
   static const PROMOTION = '/promotion';
   static const MENU = '/menu';
-  static const SETTING = '/setting';
   static const SERVICESELECT = '/serviceselect';
 }

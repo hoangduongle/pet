@@ -10,6 +10,7 @@ import 'package:pets/app/modules/serviceSelect/controller/serviceSelect_controll
 import 'package:pets/app/modules/serviceSelect/widgets/RadioItem.dart';
 
 import '../widgets/RadioBox.dart';
+import '../widgets/RadioPet.dart';
 
 class ServiceSelectScreen extends StatefulWidget {
   const ServiceSelectScreen({super.key});
@@ -71,53 +72,12 @@ class _ServiceSelectScreenState extends State<ServiceSelectScreen> {
                             fontSize: 17.sp),
                       ),
                       SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'Bảng giá dịch vụ',
-                        style: TextStyle(
-                            color: AppColors.C000000,
-                            fontWeight: FontWeights.bold,
-                            fontSize: 15.sp),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      SizedBox(
-                          height: 90.h,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller.sampleData.value.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () {
-                                  setState(() {
-                                    for (var element
-                                        in controller.sampleData.value) {
-                                      element.isSelected = false;
-                                    }
-                                    controller.sampleData.value[index]
-                                        .isSelected = true;
-                                  });
-                                },
-                                child: RadioItem(
-                                    controller.sampleData.value[index]),
-                              );
-                            },
-                          )),
-                      SizedBox(
                         height: 10.h,
                       ),
                       Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Mô tả',
-                              style: h6.copyWith(fontSize: 15.sp),
-                            ),
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 10.h),
                               child: Text(
@@ -167,6 +127,75 @@ class _ServiceSelectScreenState extends State<ServiceSelectScreen> {
                                     fontSize: 13.sp),
                               ),
                             ),
+                            Text(
+                              'Loại thú cưng',
+                              style: TextStyle(
+                                  color: AppColors.C000000,
+                                  fontWeight: FontWeights.medium,
+                                  fontSize: 15.sp),
+                            ),
+                            SizedBox(
+                                height: 90.h,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.typePet.value.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () {
+                                        setState(() {
+                                          for (var element
+                                              in controller.typePet.value) {
+                                            element.isSelected = false;
+                                          }
+                                          controller.typePet.value[index]
+                                              .isSelected = true;
+                                        });
+                                      },
+                                      child: RadioPet(
+                                          controller.typePet.value[index]),
+                                    );
+                                  },
+                                )),
+                            Text(
+                              'Kích cỡ',
+                              style: TextStyle(
+                                  color: AppColors.C000000,
+                                  fontWeight: FontWeights.medium,
+                                  fontSize: 15.sp),
+                            ),
+                            SizedBox(
+                                height: 90.h,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.sampleData.value.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () {
+                                        setState(() {
+                                          for (var element
+                                              in controller.sampleData.value) {
+                                            element.isSelected = false;
+                                          }
+                                          controller.sampleData.value[index]
+                                              .isSelected = true;
+                                        });
+                                      },
+                                      child: RadioItem(
+                                          controller.sampleData.value[index]),
+                                    );
+                                  },
+                                )),
+                            Text(
+                              'Thêm',
+                              style: TextStyle(
+                                  color: AppColors.C000000,
+                                  fontWeight: FontWeights.medium,
+                                  fontSize: 15.sp),
+                            ),
                             for (int i = 0;
                                 i < controller.boxModelData.value.length;
                                 i++)
@@ -186,6 +215,37 @@ class _ServiceSelectScreenState extends State<ServiceSelectScreen> {
                               ),
                             SizedBox(
                               height: 20.h,
+                            ),
+                            Container(
+                              margin: EdgeInsetsDirectional.only(
+                                  start: 1.r, end: 1.r),
+                              height: 1.0,
+                              color: Colors.grey.withOpacity(0.8.r),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Tổng tiền',
+                                  style: TextStyle(
+                                      color: const Color(0xff676767),
+                                      fontWeight: FontWeights.bold,
+                                      fontSize: 20.sp),
+                                ),
+                                Text(
+                                  'đ261.000',
+                                  style: TextStyle(
+                                      color: AppColors.CFF7A00,
+                                      fontWeight: FontWeights.medium,
+                                      fontSize: 20.sp),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 80.h,
                             ),
                             Button(
                               width: double.infinity,

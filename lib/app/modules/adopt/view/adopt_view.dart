@@ -67,7 +67,7 @@ class _AdoptScreenState extends State<AdoptScreen> {
               )
             ]),
           ),
-          body: const TabBarView(children: [
+          body: TabBarView(children: [
             PetAdoptScreen(),
             PetOwnerScreen(),
           ]),

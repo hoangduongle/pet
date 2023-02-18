@@ -1,3 +1,5 @@
+import 'package:pets/app/core/model/animalType.dart';
+import 'package:pets/app/core/model/owner.dart';
 import 'package:pets/app/core/model/user.dart';
 
 abstract class Repository {
@@ -5,6 +7,9 @@ abstract class Repository {
   Future<List<User>> getListUser();
   Future<int> register(User user);
   Future<User> login(String phoneNumber, String password);
+
+  Future<List<AnimalType>> getAnimalType();
+  Future<List<Owner>> getPetOwner();
 // //=======================================================================Service
 //   Future<List<ServiceCategoryContent>> getListServiceCate();
 //   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);

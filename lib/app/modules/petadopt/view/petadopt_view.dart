@@ -7,23 +7,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/modules/petadopt/controller/petadopt_controller.dart';
 import 'package:pets/app/modules/serivce/widgets/circleCard.dart';
 import 'package:pets/app/route/app_routes.dart';
 
-class PetAdoptScreen extends StatefulWidget {
-  const PetAdoptScreen({super.key});
-
-  @override
-  State<PetAdoptScreen> createState() => _PetAdoptScreenState();
-}
-
-class _PetAdoptScreenState extends State<PetAdoptScreen> {
+class PetAdoptScreen extends GetView<PetAdoptController> {
   @override
   Widget build(BuildContext context) {
+    Get.put(PetAdoptController());
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Center(
                 child: Padding(
@@ -32,9 +28,7 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                     elevation: 3,
                     borderRadius: BorderRadius.circular(14.r),
                     child: InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.PETADOPTDETAIL);
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 50.w),
                         width: 367.w,
@@ -69,46 +63,31 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CircleCard(
-                              text: "Mèo",
-                              image:
-                                  'https://i.pinimg.com/564x/53/80/18/53801873ad36c48acd2d97a08ccde492.jpg',
-                              ontap: () {
-                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                  'searchText': 'Mèo',
-                                });
-                              },
-                            ),
-                            CircleCard(
-                              text: "Cún",
-                              image:
-                                  'https://i.pinimg.com/564x/7e/63/72/7e6372dfe746efdb87f46c3daf49e21f.jpg',
-                              ontap: () {
-                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                  'searchText': 'Cún',
-                                });
-                              },
-                            ),
-                            CircleCard(
-                              text: "Thằn lằn",
-                              image:
-                                  'https://i.pinimg.com/564x/7e/63/72/7e6372dfe746efdb87f46c3daf49e21f.jpg',
-                              ontap: () {
-                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                  'searchText': 'Thằn lằnt',
-                                });
-                              },
-                            ),
-                            CircleCard(
-                              text: "Rắn",
-                              image:
-                                  'https://i.pinimg.com/564x/7e/63/72/7e6372dfe746efdb87f46c3daf49e21f.jpg',
-                              ontap: () {
-                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                  'searchText': 'Rắn',
-                                });
-                              },
-                            ),
+                            for (int i = 0;
+                                i <
+                                    (controller.animalTypeData.value.length -
+                                        2);
+                                i++)
+                              CircleCard(
+                                text: controller.animalTypeData.value[i].name!,
+                                image: controller.animalTypeData.value[i]
+                                        .urlImage!.isEmpty
+                                    ? "https://i.pinimg.com/564x/e5/f6/c6/e5f6c6f4d5b26a91ab6ba89cef4702e1.jpg"
+                                    : controller
+                                        .animalTypeData.value[i].urlImage!,
+                                ontap: () {
+                                  debugPrint(controller
+                                      .animalTypeData.value[i].name!
+                                      .toString());
+                                  Get.toNamed(Routes.PETADOPTDETAIL,
+                                      arguments: {
+                                        'animalTypeId': controller
+                                            .animalTypeData.value[i].id!,
+                                        'animalTypeName': controller
+                                            .animalTypeData.value[i].name!,
+                                      });
+                                },
+                              ),
                           ],
                         ),
                         SizedBox(
@@ -117,24 +96,25 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            CircleCard(
-                              text: "Chim cảnh",
-                              image:
-                                  'https://i.pinimg.com/564x/91/67/68/916768c1354af6359a3d1b20d1829618.jpg',
-                              ontap: () {
-                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                  'searchText': 'Chim cảnh',
-                                });
-                              },
-                            ),
-                            CircleCard(
-                              text: "Thú cưng khác",
-                              image:
-                                  'https://i.pinimg.com/564x/91/67/68/916768c1354af6359a3d1b20d1829618.jpg',
-                              ontap: () {
-                                Get.toNamed(Routes.SEARCHSERVICE);
-                              },
-                            ),
+                            for (int i =
+                                    (controller.animalTypeData.value.length -
+                                        2);
+                                i < controller.animalTypeData.value.length;
+                                i++)
+                              CircleCard(
+                                text: controller.animalTypeData.value[i].name!,
+                                image: controller.animalTypeData.value[i]
+                                        .urlImage!.isEmpty
+                                    ? "https://i.pinimg.com/564x/e5/f6/c6/e5f6c6f4d5b26a91ab6ba89cef4702e1.jpg"
+                                    : controller
+                                        .animalTypeData.value[i].urlImage!,
+                                ontap: () {
+                                  Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                    'searchText':
+                                        '${controller.animalTypeData.value[i].name!}',
+                                  });
+                                },
+                              ),
                           ],
                         ),
                       ],
@@ -148,24 +128,83 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                         color: AppColors.C656565,
                         fontSize: 13.sp)),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [card(), card()],
+              SizedBox(
+                  height: 335.h,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: GridView.builder(
+                      itemCount: controller.petOwnerData.value.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 20.w,
+                          mainAxisSpacing: 20.h,
+                          mainAxisExtent: 260.h),
+                      itemBuilder: (context, index) {
+                        return Material(
+                          elevation: 5,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20.r),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20.r),
+                                        topRight: Radius.circular(20.r)),
+                                    child: Image.asset('assets/png/cat.png')),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 15.w, top: 10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '',
+                                        style: GoogleFonts.roboto(
+                                            textStyle: const TextStyle(
+                                          color: Color(0xffFF7A00),
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                      ),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      Text(
+                                        "Tuổi: 16 tháng",
+                                        style: GoogleFonts.roboto(
+                                            textStyle: TextStyle(
+                                          color: Color(0xff535F60),
+                                          fontSize: 13.sp,
+                                        )),
+                                      ),
+                                      Text(
+                                        "Chủ không còn khả năng nuôi",
+                                        style: GoogleFonts.roboto(
+                                            textStyle: TextStyle(
+                                          color: Color(0xff535F60),
+                                          fontSize: 13.sp,
+                                        )),
+                                      ),
+                                      Text(
+                                        "Liên hệ: 0325434343",
+                                        style: GoogleFonts.roboto(
+                                            textStyle: TextStyle(
+                                          color: Color(0xff535F60),
+                                          fontSize: 13.sp,
+                                        )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [card(), card()],
-                    ),
-                  ],
-                ),
-              ),
+                  )),
               SizedBox(
                 height: 40.h,
               ),

@@ -33,8 +33,6 @@ import 'package:pets/app/modules/serviceDetail/binding/serviceDetail_binding.dar
 import 'package:pets/app/modules/serviceDetail/view/serviceDetail_view.dart';
 import 'package:pets/app/modules/serviceSelect/binding/serviceSelect_binding.dart';
 import 'package:pets/app/modules/serviceSelect/view/serviceSelect_view.dart';
-import 'package:pets/app/modules/setting/binding/setting_binding.dart';
-import 'package:pets/app/modules/setting/view/setting_view.dart';
 import 'package:pets/app/modules/shopping/binding/shopping_binding.dart';
 import 'package:pets/app/modules/shopping/view/shopping_view.dart';
 import 'package:pets/app/modules/support/binding/support_binding.dart';
@@ -170,12 +168,6 @@ class AppPages {
       name: '/menu',
       page: () => MenuScreen(),
       binding: MenuBinding(),
-      transition: Transition.noTransition,
-    ),
-    GetPage(
-      name: '/setting',
-      page: () => SettingScreen(),
-      binding: SettingBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(
