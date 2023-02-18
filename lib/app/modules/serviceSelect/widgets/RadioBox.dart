@@ -25,7 +25,7 @@ class RadioBoxItem extends StatelessWidget {
                     color: _item.isSelected ? AppColors.CFF7A00 : Colors.grey),
                 borderRadius: BorderRadius.all(Radius.circular(8.r)),
               ),
-              child: _item.isSelected ? Icon(Icons.check) : Container()),
+              child: _item.isSelected ? const Icon(Icons.check) : Container()),
           Container(
             margin: EdgeInsets.only(left: 10.r),
             child: Text(_item.text,

@@ -153,7 +153,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                         children: [
                           CircleCard(
                             text: "Spa & Grooming",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/ea/f5/16/eaf516591c025c71960dac58ff4ba08c.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Spa & Grooming',
@@ -162,7 +163,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           ),
                           CircleCard(
                             text: "Khám bệnh",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/e2/8c/56/e28c56ba8639bb827895fc3f3bef7517.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Khám bệnh',
@@ -171,7 +173,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           ),
                           CircleCard(
                             text: "Phẫu thuật",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/e8/1b/f1/e81bf166e57c69e67ed4f8e95743c602.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Phẫu thuật',
@@ -180,7 +183,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           ),
                           CircleCard(
                             text: "Dịch vụ khác",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/9a/7d/1d/9a7d1ddeb4e46703468032f120f6adf8.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': '',
@@ -197,7 +201,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                         children: [
                           CircleCard(
                             text: "Tiêm phòng",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/9a/7d/1d/9a7d1ddeb4e46703468032f120f6adf8.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Tiêm phòng',
@@ -206,7 +211,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           ),
                           CircleCard(
                             text: "Khách sạn",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/7d/c9/66/7dc9663c96aeb90cc1973278d3150598.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Khách sạn',
@@ -215,14 +221,16 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           ),
                           CircleCard(
                             text: "Ưu đãi",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/79/09/1d/79091d317abcc24d8e58ab87eea9fcda.jpg',
                             ontap: () {
                               Get.toNamed(Routes.PROMOTION);
                             },
                           ),
                           CircleCard(
                             text: "Trợ giúp",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://i.pinimg.com/564x/1c/d6/61/1cd6618121204aecb8a0ee7415790fff.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SUPPORT);
                             },
@@ -236,16 +244,33 @@ class _ServiceScreenState extends State<ServiceScreen> {
               height: 30.h,
             ),
             const PaddingText(text: 'Dịch vụ nổi bật'),
-            cardPet('Tắm vệ sinh cắt tỉa trọn gói tại nhà', 'Pet Homies',
-                'assets/png/cat.png', 450000, 5),
+            cardPet(
+                'Combo cắt tỉa tại nhà',
+                'Pet Homies',
+                'https://i.pinimg.com/564x/8c/4b/ce/8c4bcef39f6f8b0de95cb6308c0054e8.jpg',
+                450000,
+                5),
             const PaddingText(text: 'Vaccine cần thiết cho thú cưng'),
-            cardPet('Vaccine ngừa 4 bệnh truyền nhiễm', 'Pet Care Center',
-                'assets/png/cat.png', 450000, 4.9),
+            cardPet(
+                'Tắm vệ sinh cắt tỉa trọn gói tại nhà',
+                'Pet Care Center',
+                'https://i.pinimg.com/564x/cf/e4/65/cfe4656c0c5bd3f33713fbc1da8eee75.jpg',
+                450000,
+                4.9),
             const PaddingText(text: 'Dịch vụ tận nhà'),
-            cardPet('Tắm & Xịt dưỡng cho chó (không vệ sinh)', 'Chuyên viên',
-                'assets/png/cat.png', 130000, 5),
+            cardPet(
+                'Tắm vệ sinh cắt tỉa trọn gói tại nhà',
+                'Chuyên viên',
+                'https://i.pinimg.com/564x/09/df/7b/09df7b68c9024e204e29ba02505a71c8.jpg',
+                130000,
+                5),
             const PaddingText(text: 'Sen đi làm xa, có Hotel lo nha !'),
-            cardPet('Day care', 'Pet Homies', 'assets/png/cat.png', 150000, 5),
+            cardPet(
+                'Day care',
+                'Pet Homies',
+                'https://i.pinimg.com/564x/09/df/7b/09df7b68c9024e204e29ba02505a71c8.jpg',
+                150000,
+                5),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: ClipRRect(
@@ -259,7 +284,14 @@ class _ServiceScreenState extends State<ServiceScreen> {
             for (int i = 0; i <= 4; i++)
               Padding(
                 padding: EdgeInsets.only(left: 20.w, top: 25.h),
-                child: CardFooter(),
+                child: const CardFooter(
+                    image:
+                        'https://i.pinimg.com/564x/3e/93/0e/3e930e44249e8cca0743cb1a13716824.jpg',
+                    titleText: 'Pety Care Center',
+                    subText:
+                        'Tư vấn sức khoẻ Online, khám lâm sàng vàchích ngừa tại nhà.',
+                    number: 58,
+                    rate: 5),
               ),
             SizedBox(
               height: 40.h,

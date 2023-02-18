@@ -28,7 +28,7 @@ class CardPet extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
-                child: Image.asset(
+                child: Image.network(
                   image,
                   height: 112,
                   width: double.infinity,

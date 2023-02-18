@@ -53,7 +53,10 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 ),
                 Text(
                   'Long Thạnh Mỹ, Quận 9',
-                  style: h4.copyWith(color: AppColors.CFF7A00, fontSize: 20.sp, fontWeight: FontWeights.bold),
+                  style: h4.copyWith(
+                      color: AppColors.CFF7A00,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeights.bold),
                 ),
               ],
             )
@@ -119,7 +122,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 50.w),
                       width: 365.w,
                       height: 37.h,
-                      decoration: BoxDecoration(color: AppColors.CF7F8FD, borderRadius: BorderRadius.circular(14.r)),
+                      decoration: BoxDecoration(
+                          color: AppColors.CF7F8FD,
+                          borderRadius: BorderRadius.circular(14.r)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -127,7 +132,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                             Icons.search_sharp,
                             color: Color(0xffACACAC),
                           ),
-                          Text('Tìm thứ tốt nhất cho Boss nhà bạn', style: h5.copyWith(color: AppColors.CB4B4B4, fontSize: 15.sp, fontWeight: FontWeights.medium)),
+                          Text('Tìm thứ tốt nhất cho Boss nhà bạn',
+                              style: h5.copyWith(
+                                  color: AppColors.CB4B4B4,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeights.medium)),
                         ],
                       ),
                     ),
@@ -146,7 +155,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Thức ăn cho mèo",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://png.pngtree.com/png-vector/20191027/ourlarge/pngtree-bag-of-food-for-pets-and-food-bowl-icon-png-image_1889940.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Thức ăn cho mèo',
@@ -156,7 +166,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Thức ăn cho chó",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://png.pngtree.com/png-vector/20220107/ourlarge/pngtree-dog-food-bowl-png-image_4239932.png',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Thức ăncho chó',
@@ -166,7 +177,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Đồ thường",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://png.pngtree.com/png-vector/20191109/ourlarge/pngtree-clothes-drying-hanging-flat-color-icon-vector-icon-banner-te-png-image_1968119.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Đồ thường',
@@ -176,7 +188,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Sữa tắm",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://img.pikbest.com/png-images/qiantu/mbe-style-shower-gel-shampoo-icon_2685466.png!w700wp',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Sữa tắm',
@@ -194,7 +207,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Đồ dùng, Phụ kiên",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Đồ dùng, Phụ kiên',
@@ -204,7 +218,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Mèo",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Mèo',
@@ -214,7 +229,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Chó",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Chó',
@@ -224,7 +240,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           CircleCard(
                             width: 96,
                             text: "Trợ giúp",
-                            image: 'assets/png/cat.png',
+                            image:
+                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
                             ontap: () {
                               Get.toNamed(Routes.SEARCHSERVICE, arguments: {
                                 'searchText': 'Trợ giúp',
@@ -240,7 +257,12 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               height: 30.h,
             ),
             const PaddingText(text: 'Ưu đãi nổi bật'),
-            cardPet('Tắm vệ sinh cắt tỉa trọn gói tại nhà', 'Pet Homies', 'assets/png/cat.png', 450000, 5),
+            cardPet(
+                'Tắm vệ sinh cắt tỉa trọn gói tại nhà',
+                'Pet Homies',
+                'https://bizweb.dktcdn.net/100/346/633/files/thuc-an-cho-meo-con-vi-ca-bien-va-sua-whiskas-ocean-fish-with-milk-1-1-kg.jpg?v=1557559120556',
+                450000,
+                5),
             const PaddingText(text: 'Sản phẩm nổi bật'),
             cardShop(),
             Padding(
@@ -256,7 +278,14 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
             for (int i = 0; i <= 4; i++)
               Padding(
                 padding: EdgeInsets.only(left: 20.w, top: 25.h),
-                child: CardFooter(),
+                child: const CardFooter(
+                    image:
+                        'https://i.pinimg.com/564x/3e/93/0e/3e930e44249e8cca0743cb1a13716824.jpg',
+                    titleText: 'Pety Care Center',
+                    subText:
+                        'Tư vấn sức khoẻ Online, khám lâm sàng vàchích ngừa tại nhà.',
+                    number: 58,
+                    rate: 5),
               ),
             SizedBox(
               height: 40.h,
@@ -272,7 +301,12 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
       curve: Curves.easeInOut,
       activeIndex: currentIndex,
       count: length,
-      effect: SlideEffect(dotHeight: 15.h, dotWidth: 15.w, spacing: 20, dotColor: Colors.grey, activeDotColor: Color.fromARGB(255, 92, 92, 92)),
+      effect: SlideEffect(
+          dotHeight: 15.h,
+          dotWidth: 15.w,
+          spacing: 20,
+          dotColor: Colors.grey,
+          activeDotColor: Color.fromARGB(255, 92, 92, 92)),
     );
   }
 
@@ -281,7 +315,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
       padding: EdgeInsets.only(left: 20.w, bottom: 20.h),
       child: Text(
         text,
-        style: GoogleFonts.inter(textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.sp)),
+        style: GoogleFonts.inter(
+            textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.sp)),
       ),
     );
   }
@@ -331,7 +366,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           height: 4.h,
                         ),
                         SizedBox(
-                          child: Text('Giường cho chó Oval Sofa Sofa bed', style: h6.copyWith(color: AppColors.C343434, fontSize: 15.sp)),
+                          child: Text('Giường cho chó Oval Sofa Sofa bed',
+                              style: h6.copyWith(
+                                  color: AppColors.C343434, fontSize: 15.sp)),
                         ),
                         SizedBox(
                           height: 8.h,
@@ -341,10 +378,15 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           children: [
                             Text(
                               'Giá ${NumberUtils.vnd(1455000)}đ',
-                              style: h6.copyWith(color: AppColors.C000000, fontSize: 15.sp, fontWeight: FontWeights.bold),
+                              style: h6.copyWith(
+                                  color: AppColors.C000000,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeights.bold),
                             ),
                             Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.r), color: AppColors.CFF7A00),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7.r),
+                                  color: AppColors.CFF7A00),
                               padding: EdgeInsets.all(4.r),
                               child: Icon(
                                 Icons.shopping_basket_outlined,
@@ -364,7 +406,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     );
   }
 
-  Widget cardPet(String textTitle, String subText, String image, double price, double rate) {
+  Widget cardPet(String textTitle, String subText, String image, double price,
+      double rate) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: SizedBox(
@@ -378,7 +421,12 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
             crossAxisCount: 1,
           ),
           itemBuilder: (context, index) {
-            return CardPet(image: image, textTitle: textTitle, subText: subText, price: price, rate: rate);
+            return CardPet(
+                image: image,
+                textTitle: textTitle,
+                subText: subText,
+                price: price,
+                rate: rate);
           },
         ),
       ),

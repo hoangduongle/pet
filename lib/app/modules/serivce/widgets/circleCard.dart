@@ -36,7 +36,7 @@ class CircleCard extends StatelessWidget {
               child: Container(
                 width: 68.w,
                 height: 68.h,
-                decoration: BoxDecoration(image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill), color: Colors.white, shape: BoxShape.circle),
+                decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(image), fit: BoxFit.fill), color: Colors.white, shape: BoxShape.circle),
               ),
             ),
           ),

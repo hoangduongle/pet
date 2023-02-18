@@ -27,9 +27,9 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<User> login(String phoneNumber, String password) {
-    var endpoint = "${DioProvider.baseUrl}/";
+    var endpoint = "${DioProvider.baseUrl}/Users/login";
     var data = {
-      'phoneNumber': phoneNumber,
+      'phone': phoneNumber,
       'password': password,
     };
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);

@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/core/widget/button.dart';
+import 'package:pets/app/core/widget/dashedLine.dart';
 import 'package:pets/app/modules/promotion/controller/promotion_controller.dart';
 
 class PromotionScreen extends GetView<PromotionController> {
@@ -30,7 +32,8 @@ class PromotionScreen extends GetView<PromotionController> {
           ),
         ),
       ),
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -105,15 +108,138 @@ class PromotionScreen extends GetView<PromotionController> {
             SizedBox(
               height: 20.h,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 142.w),
-              child: Text(
-                'Mã giảm giá trống',
-                style: h6.copyWith(fontSize: 10.sp, color: AppColors.C7D7D7D),
-              ),
-            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _voucher(String image, String titleText, double discountPrice,
+      String condition, String deadline) {
+    return Container(
+      height: 240.h,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.r),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(10.r),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: Image.network(
+                    image,
+                    // 'https://i.pinimg.com/564x/9e/05/fa/9e05faa8512924dc4fae42c49192150c.jpg',
+                    width: 80.w,
+                    height: 80.h,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      titleText,
+                      // 'Pet Homie',
+                      style: h6.copyWith(
+                          color: Colors.grey.withOpacity(.8),
+                          fontSize: 15.sp,
+                          fontWeight: FontWeights.bold),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      'Giảm ${discountPrice}đ',
+                      style: h6.copyWith(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeights.bold),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      condition,
+                      style: h6.copyWith(
+                          fontSize: 15.sp,
+                          color: const Color(0xff676767),
+                          fontWeight: FontWeights.regular),
+                    ),
+                  ],
+                ),
+                Text(
+                  deadline,
+                  style: h6.copyWith(
+                      fontSize: 12.sp,
+                      color: const Color(0xff676767),
+                      fontWeight: FontWeights.regular),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            child: const MySeparator(color: Colors.grey),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Stack(
+              children: [
+                SizedBox(
+                  height: 20.h,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    child: LinearProgressIndicator(
+                      value: 0.39.r,
+                      backgroundColor: const Color(0xffFFCFA4),
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                          Color(0xffFF5E03)),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Đã thu thập 39%",
+                      style: h6.copyWith(fontSize: 15.sp, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Button(
+                width: 100.w,
+                height: 40.h,
+                text: 'Thu thập',
+                fontSize: 15.sp,
+                outLine: false,
+                ontap: () {},
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

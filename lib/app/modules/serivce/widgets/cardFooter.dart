@@ -7,7 +7,18 @@ import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
 
 class CardFooter extends StatelessWidget {
-  const CardFooter({super.key});
+  final String image;
+  final String titleText;
+  final String subText;
+  final double rate;
+  final double number;
+  const CardFooter(
+      {super.key,
+      required this.image,
+      required this.titleText,
+      required this.subText,
+      required this.rate,
+      required this.number});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +27,8 @@ class CardFooter extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(8.r),
-          child: Image.asset(
-            'assets/png/petycarecenter.png',
+          child: Image.network(
+            image,
             width: 80.w,
             height: 64.h,
             fit: BoxFit.cover,
@@ -30,8 +41,9 @@ class CardFooter extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "Pety Care Center",
-                style: h3.copyWith(fontWeight: FontWeights.bold, fontSize: 12.sp),
+                titleText,
+                style:
+                    h3.copyWith(fontWeight: FontWeights.bold, fontSize: 12.sp),
               ),
               SizedBox(
                 height: 3.h,
@@ -39,7 +51,7 @@ class CardFooter extends StatelessWidget {
               SizedBox(
                 width: 180.w,
                 child: Text(
-                  "Tư vấn sức khoẻ Online, khám lâm sàng và chích ngừa tại nhà.",
+                  subText,
                   style: h3.copyWith(fontSize: 10.sp),
                 ),
               ),
@@ -56,11 +68,19 @@ class CardFooter extends StatelessWidget {
                   SizedBox(
                     width: 2.w,
                   ),
-                  Text('5.0', style: h6.copyWith(color: AppColors.C2D2D2D, fontWeight: FontWeights.bold, fontSize: 12.sp)),
+                  Text('$rate.0',
+                      style: h6.copyWith(
+                          color: AppColors.C2D2D2D,
+                          fontWeight: FontWeights.bold,
+                          fontSize: 12.sp)),
                   SizedBox(
                     width: 8.w,
                   ),
-                  Text('(99)', style: h6.copyWith(color: AppColors.C2D2D2D, fontWeight: FontWeights.regular, fontSize: 12.sp))
+                  Text('($number)',
+                      style: h6.copyWith(
+                          color: AppColors.C2D2D2D,
+                          fontWeight: FontWeights.regular,
+                          fontSize: 12.sp))
                 ],
               )
             ],

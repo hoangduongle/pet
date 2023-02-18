@@ -32,12 +32,16 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                     elevation: 3,
                     borderRadius: BorderRadius.circular(14.r),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.PETADOPTDETAIL);
+                      },
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 50.w),
                         width: 367.w,
                         height: 40.h,
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14.r)),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(14.r)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -45,7 +49,11 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                               Icons.search_sharp,
                               color: Color(0xffACACAC),
                             ),
-                            Text('Tìm kiếm thú cưng', style: h5.copyWith(color: AppColors.CB4B4B4, fontSize: 15.sp, fontWeight: FontWeights.medium)),
+                            Text('Tìm kiếm thú cưng',
+                                style: h5.copyWith(
+                                    color: AppColors.CB4B4B4,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeights.medium)),
                           ],
                         ),
                       ),
@@ -63,38 +71,42 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                           children: [
                             CircleCard(
                               text: "Mèo",
-                              image: 'assets/png/cat.png',
+                              image:
+                                  'https://i.pinimg.com/564x/53/80/18/53801873ad36c48acd2d97a08ccde492.jpg',
                               ontap: () {
-                                Get.toNamed(Routes.PETADOPTDETAIL, arguments: {
-                                  'searchText': 'Spa & Grooming',
+                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                  'searchText': 'Mèo',
                                 });
                               },
                             ),
                             CircleCard(
                               text: "Cún",
-                              image: 'assets/png/cat.png',
+                              image:
+                                  'https://i.pinimg.com/564x/7e/63/72/7e6372dfe746efdb87f46c3daf49e21f.jpg',
                               ontap: () {
-                                // Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                //   'searchText': 'Khám bệnh',
-                                // });
+                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                  'searchText': 'Cún',
+                                });
                               },
                             ),
                             CircleCard(
                               text: "Thằn lằn",
-                              image: 'assets/png/cat.png',
+                              image:
+                                  'https://i.pinimg.com/564x/7e/63/72/7e6372dfe746efdb87f46c3daf49e21f.jpg',
                               ontap: () {
-                                // Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                //   'searchText': 'Phẫu thuật',
-                                // });
+                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                  'searchText': 'Thằn lằnt',
+                                });
                               },
                             ),
                             CircleCard(
                               text: "Rắn",
-                              image: 'assets/png/cat.png',
+                              image:
+                                  'https://i.pinimg.com/564x/7e/63/72/7e6372dfe746efdb87f46c3daf49e21f.jpg',
                               ontap: () {
-                                // Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                //   'searchText': '',
-                                // });
+                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                  'searchText': 'Rắn',
+                                });
                               },
                             ),
                           ],
@@ -107,20 +119,20 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
                           children: [
                             CircleCard(
                               text: "Chim cảnh",
-                              image: 'assets/png/cat.png',
+                              image:
+                                  'https://i.pinimg.com/564x/91/67/68/916768c1354af6359a3d1b20d1829618.jpg',
                               ontap: () {
-                                // Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                //   'searchText': 'Tiêm phòng',
-                                // });
+                                Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                                  'searchText': 'Chim cảnh',
+                                });
                               },
                             ),
                             CircleCard(
                               text: "Thú cưng khác",
-                              image: 'assets/png/cat.png',
+                              image:
+                                  'https://i.pinimg.com/564x/91/67/68/916768c1354af6359a3d1b20d1829618.jpg',
                               ontap: () {
-                                // Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                //   'searchText': 'Khách sạn',
-                                // });
+                                Get.toNamed(Routes.SEARCHSERVICE);
                               },
                             ),
                           ],
@@ -130,7 +142,11 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.h),
-                child: Text("Thú cưng cần được bạn nhận nuôi nè", style: h6.copyWith(fontWeight: FontWeights.bold, color: AppColors.C656565, fontSize: 13.sp)),
+                child: Text("Thú cưng cần được bạn nhận nuôi nè",
+                    style: h6.copyWith(
+                        fontWeight: FontWeights.bold,
+                        color: AppColors.C656565,
+                        fontSize: 13.sp)),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -173,7 +189,11 @@ class _PetAdoptScreenState extends State<PetAdoptScreen> {
           },
           child: Column(
             children: [
-              ClipRRect(borderRadius: BorderRadius.only(topLeft: Radius.circular(20.r), topRight: Radius.circular(20.r)), child: Image.asset('assets/png/cat.png')),
+              ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.r),
+                      topRight: Radius.circular(20.r)),
+                  child: Image.asset('assets/png/cat.png')),
               Padding(
                 padding: EdgeInsets.only(left: 15.w, top: 10.h),
                 child: Column(

@@ -155,6 +155,7 @@ class MenuScreen extends GetView<MenuTabController> {
       margin: EdgeInsetsDirectional.only(start: 1.r, end: 1.r),
       height: 1.0,
       color: Colors.grey.withOpacity(0.8.r),
+      
     );
   }
 

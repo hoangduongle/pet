@@ -22,12 +22,12 @@ class LoginController extends BaseController {
 
   void submit() async {
     pageLoading.value = true;
-    // var loginService =
-    //     _repository.login(phoneNumberController.text, pwdController.text);
+    var loginService =
+        _repository.login(phoneNumberController.text, pwdController.text);
     // await callDataService(
     //   loginService,
     //   onSuccess: (User? response) {
-    //     // token = response?.token;
+    //     debugPrint(response?.name);
     //   },
     //   onError: (DioError dioError) {
     //     var response = dioError.response;

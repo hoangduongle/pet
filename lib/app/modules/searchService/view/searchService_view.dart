@@ -7,21 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/modules/searchService/controller/searchService_controller.dart';
 import 'package:pets/app/modules/searchService/widgets/searchFast.dart';
 
-class SearchServiceScreen extends StatefulWidget {
-  const SearchServiceScreen({super.key});
-
-  @override
-  State<SearchServiceScreen> createState() => _SearchServiceScreenState();
-}
-
-TextEditingController searchTextController = new TextEditingController();
-
-class _SearchServiceScreenState extends State<SearchServiceScreen> {
+class SearchServiceScreen extends GetView<SearchServiceController> {
   @override
   Widget build(BuildContext context) {
-    // searchTextController.text = Get.arguments['searchText'];
+    controller.onInit();
+
     return Scaffold(
       backgroundColor: AppColors.Cf2f2f2,
       appBar: AppBar(
@@ -44,17 +37,25 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                       color: AppColors.CD8D8D8,
                     ),
                     child: TextField(
-                      controller: searchTextController,
+                      controller: controller.searchTextController,
                       cursorColor: AppColors.C707070,
                       autofocus: true,
                       onChanged: (value) {
                         debugPrint(value);
                       },
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
-                          focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: AppColors.CD8D8D8), borderRadius: BorderRadius.circular(10.r)),
-                          enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: AppColors.CD8D8D8), borderRadius: BorderRadius.circular(10.r)),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r)),
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 10.w),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: AppColors.CD8D8D8),
+                              borderRadius: BorderRadius.circular(10.r)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: AppColors.CD8D8D8),
+                              borderRadius: BorderRadius.circular(10.r)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.r)),
                           hintText: 'Tìm kiếm dịch vụ và phòng khám',
                           hintStyle: h6.copyWith(
                             color: AppColors.C707070,
@@ -71,7 +72,10 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                   },
                   child: Text(
                     "Thoát",
-                    style: h6.copyWith(fontSize: 19.sp, color: AppColors.CEA7509, fontWeight: FontWeights.bold),
+                    style: h6.copyWith(
+                        fontSize: 19.sp,
+                        color: AppColors.CEA7509,
+                        fontWeight: FontWeights.bold),
                   ),
                 ),
               ],
@@ -81,7 +85,7 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                 SearchFast(
                   text: 'Spa & Grooming',
                   ontap: () {
-                    searchTextController.text = 'Spa & Grooming';
+                    controller.searchTextController.text = 'Spa & Grooming';
                   },
                 ),
                 SizedBox(
@@ -90,7 +94,7 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                 SearchFast(
                   text: 'Mèo',
                   ontap: () {
-                    searchTextController.text = 'Mèo';
+                    controller.searchTextController.text = 'Mèo';
                   },
                 ),
                 SizedBox(
@@ -99,7 +103,7 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                 SearchFast(
                   text: 'Chó',
                   ontap: () {
-                    searchTextController.text = 'Chó';
+                    controller.searchTextController.text = 'Chó';
                   },
                 ),
               ],
@@ -162,7 +166,11 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Pet Homies', style: h6.copyWith(color: AppColors.C343434, fontSize: 17.sp, fontWeight: FontWeights.bold)),
+                          Text('Pet Homies',
+                              style: h6.copyWith(
+                                  color: AppColors.C343434,
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeights.bold)),
                           SizedBox(
                             height: 10.h,
                           ),
@@ -176,10 +184,18 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                               SizedBox(
                                 width: 5.w,
                               ),
-                              Text('5.0', style: h6.copyWith(color: AppColors.C2D2D2D, fontSize: 15.sp, fontWeight: FontWeights.bold)),
+                              Text('5.0',
+                                  style: h6.copyWith(
+                                      color: AppColors.C2D2D2D,
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeights.bold)),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Text('(58)', style: h6.copyWith(color: AppColors.C656565, fontSize: 13.sp, fontWeight: FontWeights.regular)),
+                                child: Text('(58)',
+                                    style: h6.copyWith(
+                                        color: AppColors.C656565,
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeights.regular)),
                               ),
                               Icon(
                                 Icons.all_inbox,
@@ -191,7 +207,10 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                               ),
                               Text(
                                 '10+',
-                                style: h6.copyWith(color: AppColors.C656565, fontSize: 13.sp, fontWeight: FontWeights.regular),
+                                style: h6.copyWith(
+                                    color: AppColors.C656565,
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeights.regular),
                               ),
                             ],
                           )
@@ -213,7 +232,10 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
                   ),
                   Text(
                     'Xem tất cả',
-                    style: h6.copyWith(color: AppColors.C969696, fontSize: 13.sp, fontWeight: FontWeights.medium),
+                    style: h6.copyWith(
+                        color: AppColors.C969696,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeights.medium),
                   ),
                 ],
               ),
@@ -247,14 +269,20 @@ class _SearchServiceScreenState extends State<SearchServiceScreen> {
             children: [
               Text(
                 'Cạo lông cho mèo - Shave Cats hair',
-                style: h6.copyWith(fontSize: 12.sp, color: AppColors.C343434, fontWeight: FontWeights.medium),
+                style: h6.copyWith(
+                    fontSize: 12.sp,
+                    color: AppColors.C343434,
+                    fontWeight: FontWeights.medium),
               ),
               SizedBox(
                 height: 10.h,
               ),
               Text(
                 'Giá từ 400.000đ',
-                style: h6.copyWith(fontSize: 10.sp, color: AppColors.C929292, fontWeight: FontWeights.regular),
+                style: h6.copyWith(
+                    fontSize: 10.sp,
+                    color: AppColors.C929292,
+                    fontWeight: FontWeights.regular),
               ),
             ],
           )
