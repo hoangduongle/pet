@@ -1,10 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pets/app/core/values/app_colors.dart';
+import 'package:pets/app/core/values/text_styles.dart';
+import '../controller/menutab_controller.dart';
 
-class UsuallyServiceScreen extends GetView<MenuController> {
+class UsuallyServiceScreen extends GetView<MenuTabController> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      backgroundColor: AppColors.Cf2f2f2,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          'Dịch vụ hay sử dụng',
+          style: h6.copyWith(color: Colors.black),
+        ),
+        centerTitle: true,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.C868686,
+            size: 22.sp,
+          ),
+        ),
+      ),
+    );
   }
 }

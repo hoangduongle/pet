@@ -1,7 +1,7 @@
 class OrderDetail {
   int? id;
   String? description;
-  int? price;
+  double? price;
   int? qty;
   int? orderId;
   int? serviceId;

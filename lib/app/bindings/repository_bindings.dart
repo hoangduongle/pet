@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pets/app/data/repository/repository.dart';
 import 'package:pets/app/data/repository/repository_impl.dart';
+import 'package:pets/app/modules/cart/controller/cart_controller.dart';
 
 class RepositoryBindings implements Bindings {
   @override
@@ -9,6 +10,9 @@ class RepositoryBindings implements Bindings {
       () => RepositoryImpl(),
       tag: (Repository).toString(),
       fenix: true,
+    );
+    Get.put<CartController>(
+      CartController(),
     );
   }
 }

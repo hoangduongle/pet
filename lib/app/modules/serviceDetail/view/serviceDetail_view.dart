@@ -8,8 +8,6 @@ import 'package:pets/app/core/values/text_styles.dart';
 import 'package:pets/app/core/widget/button.dart';
 import 'package:pets/app/route/app_routes.dart';
 
-import '../../serivce/widgets/cardFooter.dart';
-
 class ServiceDetailScreen extends StatefulWidget {
   const ServiceDetailScreen({super.key});
 

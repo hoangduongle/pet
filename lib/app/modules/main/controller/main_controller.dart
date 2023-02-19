@@ -4,6 +4,7 @@ import 'package:pets/app/modules/adopt/controller/adopt_controller.dart';
 import 'package:pets/app/modules/adopt/view/adopt_view.dart';
 import 'package:pets/app/modules/menu/controller/menutab_controller.dart';
 import 'package:pets/app/modules/menu/view/menu_view.dart';
+import 'package:pets/app/modules/petadopt/controller/petadopt_controller.dart';
 import 'package:pets/app/modules/serivce/controller/service_controller.dart';
 import 'package:pets/app/modules/serivce/view/service_view.dart';
 import 'package:pets/app/modules/shopping/controller/shopping_controller.dart';
@@ -15,13 +16,14 @@ class MainController extends BaseController {
   late AdoptController _adoptController;
   late ShoppingController _shoppingController;
   late MenuTabController _menuController;
+  late PetAdoptController _petAdoptController;
 
   var currentTab = 0.obs;
 
   final List<Widget> _screens = [
-    const ServiceScreen(),
+    ServiceScreen(),
     const AdoptScreen(),
-    const ShoppingScreen(),
+    ShoppingScreen(),
     const MenuScreen(),
   ];
 
@@ -30,6 +32,7 @@ class MainController extends BaseController {
 
   @override
   void onInit() {
+    Get.back();
     initController();
     super.onInit();
   }
@@ -40,21 +43,25 @@ class MainController extends BaseController {
       permanent: true,
     );
     _serviceController = Get.find<ServiceController>();
-    _serviceController.init();
+    _serviceController.onInit();
 
     Get.put(
       AdoptController(),
       permanent: true,
     );
     _adoptController = Get.find<AdoptController>();
-    _adoptController.init();
+    _adoptController.onInit();
+
+    Get.put(PetAdoptController(), permanent: true);
+    _petAdoptController = Get.find<PetAdoptController>();
+    _petAdoptController.onInit();
 
     Get.put(
       ShoppingController(),
       permanent: true,
     );
     _shoppingController = Get.find<ShoppingController>();
-    _shoppingController.init();
+    _shoppingController.onInit();
 
     Get.put(
       MenuTabController(),
@@ -68,16 +75,16 @@ class MainController extends BaseController {
     currentTab.value = index;
     switch (index) {
       case 0:
-        _serviceController.init();
+        _serviceController.onInit();
         break;
       case 1:
-        _adoptController.init();
+        _adoptController.onInit();
         break;
       case 2:
-        _shoppingController.init();
+        _shoppingController.onInit();
         break;
       case 3:
-        _shoppingController.init();
+        _shoppingController.onInit();
         break;
     }
   }

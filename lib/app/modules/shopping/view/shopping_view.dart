@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/core/model/service.dart';
 import 'package:pets/app/core/utils/number_utils.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
@@ -12,19 +13,11 @@ import 'package:pets/app/modules/serivce/widgets/cardFooter.dart';
 import 'package:pets/app/modules/serivce/widgets/cardPet.dart';
 import 'package:pets/app/modules/serivce/widgets/circleCard.dart';
 import 'package:pets/app/modules/serivce/widgets/paddingText.dart';
+import 'package:pets/app/modules/shopping/controller/shopping_controller.dart';
 import 'package:pets/app/route/app_routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class ShoppingScreen extends StatefulWidget {
-  const ShoppingScreen({super.key});
-
-  @override
-  State<ShoppingScreen> createState() => _ShoppingScreenState();
-}
-
-class _ShoppingScreenState extends State<ShoppingScreen> {
-  int currentIndex = 0;
-
+class ShoppingScreen extends GetView<ShoppingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,25 +25,19 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         onPressed: () {
           Get.toNamed(Routes.CART);
         },
-        backgroundColor: Colors.white.withOpacity(0.8),
+        backgroundColor: const Color(0xffFF7A00),
         elevation: 2,
         // ignore: prefer_const_constructors
         child: Icon(
           Icons.shopping_cart_checkout_rounded,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            color: AppColors.C656565,
-          ),
-          onPressed: () {},
-        ),
+        leading: Container(),
         title: Column(
           children: [
             Text(
@@ -95,9 +82,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                     child: CarouselSlider.builder(
                       options: CarouselOptions(
                         onPageChanged: (index, reason) {
-                          setState(() {
-                            currentIndex = index;
-                          });
+                          controller.currentIndex.value = index;
                         },
                         enableInfiniteScroll: true,
                         autoPlayInterval: const Duration(milliseconds: 3500),
@@ -113,10 +98,10 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                       },
                     ),
                   ),
-                  BuildIndicator(
-                    length: 2,
-                    currentIndex: currentIndex,
-                  ),
+                  Obx(() => BuildIndicator(
+                        length: 2,
+                        currentIndex: controller.currentIndex.value,
+                      )),
                 ])),
             Center(
               child: Padding(
@@ -126,9 +111,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                   borderRadius: BorderRadius.circular(10.r),
                   child: InkWell(
                     onTap: () {
-                      Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                        'searchText': '',
-                      });
+                      // Get.toNamed(Routes.SEARCHSERVICE, arguments: {
+                      //   'searchText': '',
+                      // });
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 50.w),
@@ -161,106 +146,29 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 22.w),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleCard(
-                            width: 96,
-                            text: "Thức ăn cho mèo",
-                            image:
-                                'https://png.pngtree.com/png-vector/20191027/ourlarge/pngtree-bag-of-food-for-pets-and-food-bowl-icon-png-image_1889940.jpg',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Thức ăn cho mèo',
-                              });
-                            },
-                          ),
-                          CircleCard(
-                            width: 96,
-                            text: "Thức ăn cho chó",
-                            image:
-                                'https://png.pngtree.com/png-vector/20220107/ourlarge/pngtree-dog-food-bowl-png-image_4239932.png',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Thức ăncho chó',
-                              });
-                            },
-                          ),
-                          CircleCard(
-                            width: 96,
-                            text: "Đồ thường",
-                            image:
-                                'https://png.pngtree.com/png-vector/20191109/ourlarge/pngtree-clothes-drying-hanging-flat-color-icon-vector-icon-banner-te-png-image_1968119.jpg',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Đồ thường',
-                              });
-                            },
-                          ),
-                          CircleCard(
-                            width: 96,
-                            text: "Sữa tắm",
-                            image:
-                                'https://img.pikbest.com/png-images/qiantu/mbe-style-shower-gel-shampoo-icon_2685466.png!w700wp',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Sữa tắm',
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                      Obx(() => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              for (int i = 0;
+                                  i < controller.cateData.value.length;
+                                  i++)
+                                CircleCard(
+                                  text: controller.cateData.value[i].name!,
+                                  image: controller.cateData.value[i].urlImage!,
+                                  ontap: () {
+                                    Get.toNamed(Routes.SEARCHSERVICE,
+                                        arguments: {
+                                          'searchText': controller
+                                              .cateData.value[i].name!,
+                                          'searchCateId':
+                                              controller.cateData.value[i].id!,
+                                        });
+                                  },
+                                ),
+                            ],
+                          )),
                       SizedBox(
                         height: 15.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleCard(
-                            width: 96,
-                            text: "Đồ dùng, Phụ kiên",
-                            image:
-                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Đồ dùng, Phụ kiên',
-                              });
-                            },
-                          ),
-                          CircleCard(
-                            width: 96,
-                            text: "Mèo",
-                            image:
-                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Mèo',
-                              });
-                            },
-                          ),
-                          CircleCard(
-                            width: 96,
-                            text: "Chó",
-                            image:
-                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Chó',
-                              });
-                            },
-                          ),
-                          CircleCard(
-                            width: 96,
-                            text: "Trợ giúp",
-                            image:
-                                'https://salt.tikicdn.com/cache/280x280/ts/product/27/3c/2a/4e587710e407c0fa4409def28b35c76b.jpg',
-                            ontap: () {
-                              Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                'searchText': 'Trợ giúp',
-                              });
-                            },
-                          ),
-                        ],
                       ),
                     ],
                   )),
@@ -269,14 +177,13 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               height: 30.h,
             ),
             const PaddingText(text: 'Ưu đãi nổi bật'),
-            cardPet(
-                'Tắm vệ sinh cắt tỉa trọn gói tại nhà',
-                'Pet Homies',
-                'https://bizweb.dktcdn.net/100/346/633/files/thuc-an-cho-meo-con-vi-ca-bien-va-sua-whiskas-ocean-fish-with-milk-1-1-kg.jpg?v=1557559120556',
-                450000,
-                5),
+            Obx(
+              () => cardPet(controller.serviceData),
+            ),
             const PaddingText(text: 'Sản phẩm nổi bật'),
-            cardShop(),
+            Obx(
+              () => cardPet(controller.serviceData),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: ClipRRect(
@@ -333,13 +240,13 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     );
   }
 
-  Widget cardShop() {
+  Widget cardShop(Rx<List<Service>> service) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: SizedBox(
         height: 220.h,
         child: GridView.builder(
-          itemCount: 3,
+          itemCount: service.value.length,
           scrollDirection: Axis.horizontal,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisSpacing: 30.w,
@@ -360,15 +267,17 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
-                      Get.toNamed(Routes.ITEMDETAIL);
+                      Get.toNamed(Routes.ITEMDETAIL, arguments: {
+                        'service': service.value[index],
+                      });
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10.r),
-                          child: Image.asset(
-                            'assets/png/cat.png',
+                          child: Image.network(
+                            controller.serviceData.value[index].urlImage!,
                             height: 112,
                             width: double.infinity,
                             fit: BoxFit.fill,
@@ -378,7 +287,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           height: 4.h,
                         ),
                         SizedBox(
-                          child: Text('Giường cho chó Oval Sofa Sofa bed',
+                          child: Text(controller.serviceData.value[index].name!,
                               style: h6.copyWith(
                                   color: AppColors.C343434, fontSize: 15.sp)),
                         ),
@@ -389,7 +298,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Giá ${NumberUtils.vnd(1455000)}đ',
+                              'Giá ${NumberUtils.intToVnd(controller.serviceData.value[index].price)}đ',
                               style: h6.copyWith(
                                   color: AppColors.C000000,
                                   fontSize: 15.sp,
@@ -418,30 +327,36 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     );
   }
 
-  Widget cardPet(String textTitle, String subText, String image, double price,
-      double rate) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-      child: SizedBox(
-        height: 220.h,
-        child: GridView.builder(
-          itemCount: 3,
-          scrollDirection: Axis.horizontal,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            mainAxisSpacing: 30.w,
-            mainAxisExtent: 180.w,
-            crossAxisCount: 1,
-          ),
-          itemBuilder: (context, index) {
-            return CardPet(
-                image: image,
-                textTitle: textTitle,
-                subText: subText,
-                price: price,
-                rate: rate);
-          },
-        ),
-      ),
-    );
+  Widget cardPet(Rx<List<Service>> service) {
+    return service.value.isEmpty
+        ? Container(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+              child: const Text('Dịch vụ tạm thời chưa có'),
+            ),
+          )
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+            child: SizedBox(
+              height: 220.h,
+              child: GridView.builder(
+                itemCount: service.value.length,
+                scrollDirection: Axis.horizontal,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 30.w,
+                  mainAxisExtent: 180.w,
+                  crossAxisCount: 1,
+                ),
+                itemBuilder: (context, index) {
+                  return CardPet(
+                      image: service.value[index].urlImage!,
+                      textTitle: service.value[index].name!,
+                      subText: '',
+                      price: double.parse('${service.value[index].price}'),
+                      rate: 4.9);
+                },
+              ),
+            ),
+          );
   }
 }

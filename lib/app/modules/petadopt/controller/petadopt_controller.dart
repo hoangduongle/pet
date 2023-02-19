@@ -10,20 +10,27 @@ class PetAdoptController extends BaseController {
 
   Rx<List<AnimalType>> animalTypeData = Rx<List<AnimalType>>([]);
   Rx<List<Owner>> petOwnerData = Rx<List<Owner>>([]);
-
+  bool isLoading = true;
   @override
-  void onInit() {
-    fetchAnimalType();
-    fetchPetOwner();
+  void onInit() async {
+    init();
     super.onInit();
   }
 
-  void fetchAnimalType() async {
+  void init() async {
+    await fetchAnimalType();
+    await fetchPetOwner();
+  }
+
+  Future<void> fetchAnimalType() async {
     var animalType = _repository.getAnimalType();
     List<AnimalType> result = [];
 
     await callDataService(
       animalType,
+      onStart: () {
+        isLoading = true;
+      },
       onSuccess: (List<AnimalType> response) {
         result = response;
       },
@@ -32,17 +39,17 @@ class PetAdoptController extends BaseController {
     animalTypeData(result);
   }
 
-  void fetchPetOwner() async {
+  Future<void> fetchPetOwner() async {
     var petOwner = _repository.getPetOwner();
     List<Owner> result = [];
-
-    await callDataService(
-      petOwner,
-      onSuccess: (List<Owner> response) {
-        result = response;
-      },
-      onError: (DioError dioError) {},
-    );
+    await callDataService(petOwner,
+        onSuccess: (List<Owner> response) {
+          result = response;
+        },
+        onError: (DioError dioError) {},
+        onComplete: () {
+          isLoading = false;
+        });
     petOwnerData(result);
   }
 }

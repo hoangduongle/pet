@@ -4,7 +4,7 @@ import 'package:pets/app/core/model/paymentMethod.dart';
 class Payment {
   int? id;
   String? date;
-  int? total;
+  double? total;
   Order? order;
   int? paymentMethodId;
   PaymentMethod? paymentMethod;

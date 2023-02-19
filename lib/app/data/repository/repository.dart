@@ -1,15 +1,28 @@
+import 'package:flutter/foundation.dart';
 import 'package:pets/app/core/model/animalType.dart';
+import 'package:pets/app/core/model/category.dart';
+import 'package:pets/app/core/model/order.dart';
 import 'package:pets/app/core/model/owner.dart';
+import 'package:pets/app/core/model/service.dart';
+import 'package:pets/app/core/model/shop.dart';
 import 'package:pets/app/core/model/user.dart';
 
 abstract class Repository {
 // //=========================================================================Image
   Future<List<User>> getListUser();
   Future<int> register(User user);
-  Future<User> login(String phoneNumber, String password);
+  Future<int> login(String phoneNumber, String password);
 
   Future<List<AnimalType>> getAnimalType();
   Future<List<Owner>> getPetOwner();
+  Future<List<Caterogies>> getCaterogy(bool isCareServicec);
+  Future<List<Owner>> getListPet(int cateId);
+  Future<List<Service>> getListService();
+  Future<List<Service>> getListServicebyCateId(int cateId);
+  Future<int> insertOrder(Order order);
+  Future<List<Service>> getListServiceSpecialNotCare();
+  Future<List<Service>> getListServiceSpecialIsCare();
+
 // //=======================================================================Service
 //   Future<List<ServiceCategoryContent>> getListServiceCate();
 //   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);

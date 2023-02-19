@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/widget/button.dart';
 import 'package:pets/app/modules/petadoptDetail/controller/petadoptDetail_controller.dart';
+import 'package:pets/app/route/app_routes.dart';
 
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/text_styles.dart';
@@ -151,80 +152,99 @@ class DetailAdopt extends GetView<PetAdoptDetailController> {
                       fontWeight: FontWeight.w600, color: Color(0xff656565))),
             ),
           ),
-          Expanded(
-              child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: GridView.builder(
-              itemCount: 6,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 20.w,
-                  mainAxisSpacing: 20.h,
-                  mainAxisExtent: 260.h),
-              itemBuilder: (context, index) {
-                return Material(
-                  elevation: 5,
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.r),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20.r),
-                                topRight: Radius.circular(20.r)),
-                            child: Image.asset('assets/png/cat.png')),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15.w, top: 10.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Mèo Anh lông dài',
-                                style: GoogleFonts.roboto(
-                                    textStyle: const TextStyle(
-                                  color: Color(0xffFF7A00),
-                                  fontWeight: FontWeight.bold,
+          Obx(() => Expanded(
+                  child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: GridView.builder(
+                  itemCount: controller.petOwnerData.value.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 20.w,
+                      mainAxisSpacing: 20.h,
+                      mainAxisExtent: 260.h),
+                  itemBuilder: (context, index) {
+                    return Material(
+                      elevation: 5,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.r),
+                      child: InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.PETINFO, arguments: {
+                            'petOwner': controller.petOwnerData.value[index],
+                          });
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.r),
+                                    topRight: Radius.circular(20.r)),
+                                child: Image.network(
+                                  controller
+                                      .petOwnerData.value[index].urlImage!,
+                                  fit: BoxFit.fill,
+                                  height: 140.h,
+                                  width: double.infinity,
                                 )),
+                            Padding(
+                              padding: EdgeInsets.only(left: 15.w, top: 10.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    controller
+                                        .petOwnerData.value[index].nickname!,
+                                    style: GoogleFonts.roboto(
+                                        textStyle: const TextStyle(
+                                      color: Color(0xffFF7A00),
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Text(
+                                    "Tuổi: 16 tháng",
+                                    style: GoogleFonts.roboto(
+                                        textStyle: TextStyle(
+                                      color: const Color(0xff535F60),
+                                      fontSize: 13.sp,
+                                    )),
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Text(
+                                    controller
+                                        .petOwnerData.value[index].description!,
+                                    style: GoogleFonts.roboto(
+                                        textStyle: TextStyle(
+                                      color: const Color(0xff535F60),
+                                      fontSize: 13.sp,
+                                    )),
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Text(
+                                    "Liên hệ: ${controller.petOwnerData.value[index].contact}",
+                                    style: GoogleFonts.roboto(
+                                        textStyle: TextStyle(
+                                      color: const Color(0xff535F60),
+                                      fontSize: 13.sp,
+                                    )),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Text(
-                                "Tuổi: 16 tháng",
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                  color: Color(0xff535F60),
-                                  fontSize: 13.sp,
-                                )),
-                              ),
-                              Text(
-                                "Chủ không còn khả năng nuôi",
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                  color: Color(0xff535F60),
-                                  fontSize: 13.sp,
-                                )),
-                              ),
-                              Text(
-                                "Liên hệ: 0325434343",
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                  color: Color(0xff535F60),
-                                  fontSize: 13.sp,
-                                )),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          )),
+                      ),
+                    );
+                  },
+                ),
+              ))),
         ],
       ),
     );

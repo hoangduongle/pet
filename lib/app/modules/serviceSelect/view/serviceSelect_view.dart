@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pets/app/core/utils/number_utils.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
@@ -45,7 +47,12 @@ class _ServiceSelectScreenState extends State<ServiceSelectScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset('assets/png/servicedetail.png'),
+                Image.network(
+                  controller.serviceData.value!.urlImage!,
+                  height: 400.h,
+                  width: double.infinity,
+                  fit: BoxFit.fill,
+                ),
                 SizedBox(
                   height: 30.h,
                 ),
@@ -55,7 +62,8 @@ class _ServiceSelectScreenState extends State<ServiceSelectScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'SPA & GROOMING',
+                        controller.CategoryName(
+                            controller.serviceData.value!.categoryId!),
                         style: TextStyle(
                             color: AppColors.C737373,
                             fontWeight: FontWeights.bold,
@@ -65,7 +73,7 @@ class _ServiceSelectScreenState extends State<ServiceSelectScreen> {
                         height: 20.h,
                       ),
                       Text(
-                        'Tắm cho pet tại nhà - full grooming',
+                        controller.serviceData.value!.name!,
                         style: TextStyle(
                             color: AppColors.C000000,
                             fontWeight: FontWeights.bold,
@@ -74,190 +82,204 @@ class _ServiceSelectScreenState extends State<ServiceSelectScreen> {
                       SizedBox(
                         height: 10.h,
                       ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.h),
-                              child: Text(
-                                "Dịch vụ tắm cắt Dogca :",
-                                style: h6.copyWith(
-                                    fontWeight: FontWeights.regular,
-                                    fontSize: 13.sp),
-                              ),
-                            ),
-                            Text(
-                              '- Cắt tỉa, tạo hình',
-                              style: h6.copyWith(
-                                  fontWeight: FontWeights.regular,
-                                  fontSize: 13.sp),
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            Text(
-                              '- Trọn  gói tắm, vệ tinh & dưỡng lông',
-                              style: h6.copyWith(
-                                  fontWeight: FontWeights.regular,
-                                  fontSize: 13.sp),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.h),
-                              child: Text(
-                                "Lưu ý :",
-                                style: h6.copyWith(
-                                    fontWeight: FontWeights.regular,
-                                    fontSize: 13.sp),
-                              ),
-                            ),
-                            Text(
-                              'Khi đến spa Dogca sẽ kiểm tra tình trạng rối lông của boss, nếu có lông rối Dogca sẽ tính thêm phụ thu gỡ rối theo tuỳ tình trạng.',
-                              style: h6.copyWith(
-                                  fontWeight: FontWeights.regular,
-                                  fontSize: 13.sp),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.h),
-                              child: Text(
-                                'Xem thêm',
-                                style: h6.copyWith(
-                                    color: const Color(0xff5bd4fb),
-                                    fontWeight: FontWeights.regular,
-                                    fontSize: 13.sp),
-                              ),
-                            ),
-                            Text(
-                              'Loại thú cưng',
-                              style: TextStyle(
-                                  color: AppColors.C000000,
-                                  fontWeight: FontWeights.medium,
-                                  fontSize: 15.sp),
-                            ),
-                            SizedBox(
-                                height: 90.h,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: controller.typePet.value.length,
-                                  itemBuilder: (context, index) {
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () {
-                                        setState(() {
-                                          for (var element
-                                              in controller.typePet.value) {
-                                            element.isSelected = false;
-                                          }
-                                          controller.typePet.value[index]
-                                              .isSelected = true;
-                                        });
-                                      },
-                                      child: RadioPet(
-                                          controller.typePet.value[index]),
-                                    );
-                                  },
-                                )),
-                            Text(
-                              'Kích cỡ',
-                              style: TextStyle(
-                                  color: AppColors.C000000,
-                                  fontWeight: FontWeights.medium,
-                                  fontSize: 15.sp),
-                            ),
-                            SizedBox(
-                                height: 90.h,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: controller.sampleData.value.length,
-                                  itemBuilder: (context, index) {
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () {
-                                        setState(() {
-                                          for (var element
-                                              in controller.sampleData.value) {
-                                            element.isSelected = false;
-                                          }
-                                          controller.sampleData.value[index]
-                                              .isSelected = true;
-                                        });
-                                      },
-                                      child: RadioItem(
-                                          controller.sampleData.value[index]),
-                                    );
-                                  },
-                                )),
-                            Text(
-                              'Thêm',
-                              style: TextStyle(
-                                  color: AppColors.C000000,
-                                  fontWeight: FontWeights.medium,
-                                  fontSize: 15.sp),
-                            ),
-                            for (int i = 0;
-                                i < controller.boxModelData.value.length;
-                                i++)
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () {
-                                  setState(() {
-                                    controller
-                                            .boxModelData.value[i].isSelected =
-                                        !controller
-                                            .boxModelData.value[i].isSelected;
-                                  });
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            controller.serviceData.value!.description!,
+                            style: h6.copyWith(
+                                fontWeight: FontWeights.regular,
+                                fontSize: 13.sp),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Text(
+                            'Loại thú cưng',
+                            style: TextStyle(
+                                color: AppColors.C000000,
+                                fontWeight: FontWeights.medium,
+                                fontSize: 15.sp),
+                          ),
+                          SizedBox(
+                              height: 90.h,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.typePet.value.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () {
+                                      setState(() {
+                                        for (var element
+                                            in controller.typePet.value) {
+                                          element.isSelected = false;
+                                        }
+                                        controller.typePet.value[index]
+                                            .isSelected = true;
+                                      });
+                                    },
+                                    child: RadioPet(
+                                        controller.typePet.value[index]),
+                                  );
                                 },
-                                child: RadioBoxItem(
-                                    controller.boxModelData.value[i]),
-                              ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            Container(
-                              margin: EdgeInsetsDirectional.only(
-                                  start: 1.r, end: 1.r),
-                              height: 1.0,
-                              color: Colors.grey.withOpacity(0.8.r),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Tổng tiền',
-                                  style: TextStyle(
-                                      color: const Color(0xff676767),
-                                      fontWeight: FontWeights.bold,
-                                      fontSize: 20.sp),
-                                ),
-                                Text(
-                                  'đ261.000',
-                                  style: TextStyle(
-                                      color: AppColors.CFF7A00,
-                                      fontWeight: FontWeights.medium,
-                                      fontSize: 20.sp),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 80.h,
-                            ),
-                            Button(
+                              )),
+                          Text(
+                            'Kích cỡ',
+                            style: TextStyle(
+                                color: AppColors.C000000,
+                                fontWeight: FontWeights.medium,
+                                fontSize: 15.sp),
+                          ),
+                          SizedBox(
+                              height: 90.h,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.sampleData.value.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () {
+                                      setState(() {
+                                        for (var element
+                                            in controller.sampleData.value) {
+                                          element.isSelected = false;
+                                        }
+                                        controller.sampleData.value[index]
+                                            .isSelected = true;
+                                      });
+                                    },
+                                    child: RadioItem(
+                                        controller.sampleData.value[index]),
+                                  );
+                                },
+                              )),
+                          Text(
+                            'Thời gian',
+                            style: TextStyle(
+                                color: AppColors.C000000,
+                                fontWeight: FontWeights.medium,
+                                fontSize: 15.sp),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.h),
+                            child: Container(
+                              height: 50.h,
                               width: double.infinity,
-                              text: 'Xác nhận',
-                              outLine: false,
-                              ontap: () {},
+                              padding: EdgeInsets.all(1.r),
+                              decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xff343434).withOpacity(0.5),
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Material(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                                elevation: 0,
+                                child: InkWell(
+                                  onTap: () {
+                                    DatePicker.showDateTimePicker(context,
+                                        showTitleActions: true,
+                                        minTime: DateTime.now(),
+                                        maxTime: DateTime(2023, 12, 31),
+                                        onConfirm: (date) {
+                                      var formatter =
+                                          DateFormat('hh:mm dd/MM/yyyy');
+                                      String formattedDate =
+                                          formatter.format(date);
+                                      controller.date.value = formattedDate;
+                                    },
+                                        currentTime: DateTime.now(),
+                                        locale: LocaleType.vi);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.w),
+                                      child: Obx(() => Text(
+                                            controller.date.value,
+                                            style: h5.copyWith(
+                                                color: const Color(0xff343434),
+                                                fontWeight: FontWeights.bold,
+                                                fontSize: 20.sp),
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              height: 40.h,
+                          ),
+                          Text(
+                            'Thêm',
+                            style: TextStyle(
+                                color: AppColors.C000000,
+                                fontWeight: FontWeights.medium,
+                                fontSize: 15.sp),
+                          ),
+                          for (int i = 0;
+                              i < controller.boxModelData.value.length;
+                              i++)
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () {
+                                setState(() {
+                                  controller.boxModelData.value[i].isSelected =
+                                      !controller
+                                          .boxModelData.value[i].isSelected;
+                                });
+                              },
+                              child: RadioBoxItem(
+                                  controller.boxModelData.value[i]),
                             ),
-                          ],
-                        ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Container(
+                            margin: EdgeInsetsDirectional.only(
+                                start: 1.r, end: 1.r),
+                            height: 1.0,
+                            color: Colors.grey.withOpacity(0.8.r),
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Tổng tiền',
+                                style: TextStyle(
+                                    color: const Color(0xff676767),
+                                    fontWeight: FontWeights.bold,
+                                    fontSize: 20.sp),
+                              ),
+                              Obx(() => Text(
+                                    'đ${NumberUtils.vnd(controller.getTotal)}',
+                                    style: TextStyle(
+                                        color: AppColors.CFF7A00,
+                                        fontWeight: FontWeights.medium,
+                                        fontSize: 20.sp),
+                                  )),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 80.h,
+                          ),
+                          Button(
+                            width: double.infinity,
+                            text: 'Thêm vào giỏ hàng',
+                            outLine: false,
+                            ontap: () {
+                              controller.addToCart();
+                            },
+                          ),
+                          SizedBox(
+                            height: 40.h,
+                          ),
+                        ],
                       ),
                     ],
                   ),

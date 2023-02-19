@@ -4,14 +4,16 @@ import 'package:get/get.dart';
 import 'package:pets/app/core/base/base_controller.dart';
 import 'package:pets/app/core/model/user.dart';
 import 'package:pets/app/core/network/dio_token_manager.dart';
+import 'package:pets/app/core/widget/loading_dialog.dart';
 import 'package:pets/app/data/repository/repository.dart';
+import 'package:pets/app/modules/login/widgets/dialog.dart';
 import 'package:pets/app/route/app_routes.dart';
 
 class LoginController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
 
   final formKey = GlobalKey<FormState>();
-  Rx<User?> userContent = Rx<User?>(null);
+  // Rx<User?> userContent = Rx<User?>(null);
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
 
@@ -21,21 +23,20 @@ class LoginController extends BaseController {
   var pageLoading = false.obs;
 
   void submit() async {
-    pageLoading.value = true;
+    if (!formKey.currentState!.validate()) return;
+    formKey.currentState!.save();
     var loginService =
         _repository.login(phoneNumberController.text, pwdController.text);
+    int result = -1;
     await callDataService(
       loginService,
-      onSuccess: (User? response) {
-        userContent(response);
+      onStart: () {
+        const LoadingDialog().showLoadingDialog(Get.context!);
       },
-      onError: (DioError dioError) {
-        var response = dioError.response;
-
-        if (response != null &&
-            response.data.toString().isNotEmpty &&
-            response.data['detail'] == 'Invalid user name or password') {}
+      onSuccess: (int response) {
+        result = response;
       },
+      onError: (DioError dioError) {},
     );
     await Future.delayed(const Duration(seconds: 1));
 
@@ -44,8 +45,11 @@ class LoginController extends BaseController {
       pwdController.text,
     );
     pageLoading.value = false;
-    if (userContent != null) {
+    if (result == 200) {
       Get.offAllNamed(Routes.MAIN);
+    } else {
+      Get.back();
+      const LoginDialogWidget().showLoginErrorDialog(Get.context!);
     }
   }
 

@@ -14,7 +14,6 @@ import 'package:pets/app/route/app_routes.dart';
 class PetAdoptScreen extends GetView<PetAdoptController> {
   @override
   Widget build(BuildContext context) {
-    Get.put(PetAdoptController());
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -60,36 +59,35 @@ class PetAdoptScreen extends GetView<PetAdoptController> {
                     padding: EdgeInsets.symmetric(horizontal: 30.w),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            for (int i = 0;
-                                i <
-                                    (controller.animalTypeData.value.length -
-                                        2);
-                                i++)
-                              CircleCard(
-                                text: controller.animalTypeData.value[i].name!,
-                                image: controller.animalTypeData.value[i]
-                                        .urlImage!.isEmpty
-                                    ? "https://i.pinimg.com/564x/e5/f6/c6/e5f6c6f4d5b26a91ab6ba89cef4702e1.jpg"
-                                    : controller
-                                        .animalTypeData.value[i].urlImage!,
-                                ontap: () {
-                                  debugPrint(controller
-                                      .animalTypeData.value[i].name!
-                                      .toString());
-                                  Get.toNamed(Routes.PETADOPTDETAIL,
-                                      arguments: {
-                                        'animalTypeId': controller
-                                            .animalTypeData.value[i].id!,
-                                        'animalTypeName': controller
-                                            .animalTypeData.value[i].name!,
-                                      });
-                                },
-                              ),
-                          ],
-                        ),
+                        Obx(() => Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                for (int i = 0;
+                                    i <
+                                        (controller
+                                                .animalTypeData.value.length -
+                                            2);
+                                    i++)
+                                  CircleCard(
+                                    text: controller
+                                        .animalTypeData.value[i].name!,
+                                    image: controller.animalTypeData.value[i]
+                                            .urlImage!.isEmpty
+                                        ? "https://i.pinimg.com/564x/e5/f6/c6/e5f6c6f4d5b26a91ab6ba89cef4702e1.jpg"
+                                        : controller
+                                            .animalTypeData.value[i].urlImage!,
+                                    ontap: () {
+                                      Get.toNamed(Routes.PETADOPTDETAIL,
+                                          arguments: {
+                                            'animalTypeId': controller
+                                                .animalTypeData.value[i].id!,
+                                            'animalTypeName': controller
+                                                .animalTypeData.value[i].name!,
+                                          });
+                                    },
+                                  ),
+                              ],
+                            )),
                         SizedBox(
                           height: 15.h,
                         ),
@@ -109,10 +107,13 @@ class PetAdoptScreen extends GetView<PetAdoptController> {
                                     : controller
                                         .animalTypeData.value[i].urlImage!,
                                 ontap: () {
-                                  Get.toNamed(Routes.SEARCHSERVICE, arguments: {
-                                    'searchText':
-                                        '${controller.animalTypeData.value[i].name!}',
-                                  });
+                                  Get.toNamed(Routes.PETADOPTDETAIL,
+                                      arguments: {
+                                        'animalTypeId': controller
+                                            .animalTypeData.value[i].id!,
+                                        'animalTypeName': controller
+                                            .animalTypeData.value[i].name!,
+                                      });
                                 },
                               ),
                           ],
@@ -145,14 +146,26 @@ class PetAdoptScreen extends GetView<PetAdoptController> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20.r),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.PETINFO, arguments: {
+                                'petOwner':
+                                    controller.petOwnerData.value[index],
+                              });
+                            },
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ClipRRect(
                                     borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(20.r),
                                         topRight: Radius.circular(20.r)),
-                                    child: Image.asset('assets/png/cat.png')),
+                                    child: Image.network(
+                                      controller
+                                          .petOwnerData.value[index].urlImage!,
+                                      fit: BoxFit.fill,
+                                      height: 140.h,
+                                      width: double.infinity,
+                                    )),
                                 Padding(
                                   padding:
                                       EdgeInsets.only(left: 15.w, top: 10.h),
@@ -161,7 +174,8 @@ class PetAdoptScreen extends GetView<PetAdoptController> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '',
+                                        controller.petOwnerData.value[index]
+                                            .nickname!,
                                         style: GoogleFonts.roboto(
                                             textStyle: const TextStyle(
                                           color: Color(0xffFF7A00),
@@ -175,23 +189,24 @@ class PetAdoptScreen extends GetView<PetAdoptController> {
                                         "Tuổi: 16 tháng",
                                         style: GoogleFonts.roboto(
                                             textStyle: TextStyle(
-                                          color: Color(0xff535F60),
+                                          color: const Color(0xff535F60),
                                           fontSize: 13.sp,
                                         )),
                                       ),
                                       Text(
-                                        "Chủ không còn khả năng nuôi",
+                                        controller.petOwnerData.value[index]
+                                            .description!,
                                         style: GoogleFonts.roboto(
                                             textStyle: TextStyle(
-                                          color: Color(0xff535F60),
+                                          color: const Color(0xff535F60),
                                           fontSize: 13.sp,
                                         )),
                                       ),
                                       Text(
-                                        "Liên hệ: 0325434343",
+                                        "Liên hệ: ${controller.petOwnerData.value[index].contact}",
                                         style: GoogleFonts.roboto(
                                             textStyle: TextStyle(
-                                          color: Color(0xff535F60),
+                                          color: const Color(0xff535F60),
                                           fontSize: 13.sp,
                                         )),
                                       ),

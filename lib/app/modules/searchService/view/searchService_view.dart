@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pets/app/core/model/service.dart';
+import 'package:pets/app/core/utils/number_utils.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
 import 'package:pets/app/modules/searchService/controller/searchService_controller.dart';
 import 'package:pets/app/modules/searchService/widgets/searchFast.dart';
+import 'package:pets/app/route/app_routes.dart';
 
 class SearchServiceScreen extends GetView<SearchServiceController> {
   @override
@@ -114,47 +114,73 @@ class SearchServiceScreen extends GetView<SearchServiceController> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              cardService(),
-              cardService(),
-              cardService(),
-              cardService(),
-            ],
-          ),
+          child: Obx(() => Column(
+                children: [
+                  controller.serviceData.value.isEmpty
+                      ? Container()
+                      : Column(
+                          children: [
+                            for (int i = 0;
+                                i < controller.serviceData.value.length;
+                                i++)
+                              cardService(
+                                  controller.serviceData.value[i].urlImage!,
+                                  controller.serviceData.value[i].name!,
+                                  controller.serviceData.value[i].price!, () {
+                                if (controller
+                                            .serviceData.value[i].categoryId ==
+                                        5 ||
+                                    controller
+                                            .serviceData.value[i].categoryId ==
+                                        6 ||
+                                    controller
+                                            .serviceData.value[i].categoryId ==
+                                        7) {
+                                  Get.toNamed(Routes.ITEMDETAIL, arguments: {
+                                    'service': controller.serviceData.value[i],
+                                  });
+                                } else {
+                                  Get.toNamed(Routes.SERVICESELECT, arguments: {
+                                    'service': controller.serviceData.value[i],
+                                  });
+                                }
+                              }),
+                          ],
+                        ),
+                ],
+              )),
         ),
       ),
     );
   }
 
-  Widget cardService() {
+  Widget cardService(String image, String title, int price, Function() ontap) {
     return Material(
       color: AppColors.CF0F0F0,
       child: InkWell(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
-        onTap: () {
-          Get.toNamed('servicedetail');
-        },
+        onTap: ontap,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.h),
+          padding: EdgeInsets.symmetric(vertical: 10.h),
           child: Container(
-            height: 235.h,
+            height: 100.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
               color: Colors.white,
             ),
             child: Container(
-              padding: EdgeInsets.all(7.r),
+              padding: EdgeInsets.all(10.r),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.r),
-                        child: Image.asset(
-                          'assets/png/petycarecenter.png',
+                        child: Image.network(
+                          image,
                           height: 70.h,
                           width: 70.w,
                           fit: BoxFit.cover,
@@ -166,127 +192,35 @@ class SearchServiceScreen extends GetView<SearchServiceController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Pet Homies',
-                              style: h6.copyWith(
-                                  color: AppColors.C343434,
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeights.bold)),
                           SizedBox(
-                            height: 10.h,
+                            width: 260.w,
+                            child: Text(
+                              title,
+                              style: h6.copyWith(
+                                  fontSize: 16.sp,
+                                  color: AppColors.C343434,
+                                  fontWeight: FontWeights.medium),
+                            ),
                           ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                size: 20.sp,
-                                color: AppColors.CFFE600,
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Text('5.0',
-                                  style: h6.copyWith(
-                                      color: AppColors.C2D2D2D,
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeights.bold)),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Text('(58)',
-                                    style: h6.copyWith(
-                                        color: AppColors.C656565,
-                                        fontSize: 13.sp,
-                                        fontWeight: FontWeights.regular)),
-                              ),
-                              Icon(
-                                Icons.all_inbox,
-                                size: 18.sp,
-                                color: AppColors.C656565,
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Text(
-                                '10+',
-                                style: h6.copyWith(
-                                    color: AppColors.C656565,
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeights.regular),
-                              ),
-                            ],
-                          )
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          Text(
+                            'Giá từ ${NumberUtils.vnd(price.toDouble())}đ',
+                            style: h6.copyWith(
+                                fontSize: 20.sp,
+                                color: AppColors.C929292,
+                                fontWeight: FontWeights.bold),
+                          ),
                         ],
                       )
                     ],
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.w),
-                    child: Column(
-                      children: [
-                        detailCardService(),
-                        detailCardService(),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    'Xem tất cả',
-                    style: h6.copyWith(
-                        color: AppColors.C969696,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeights.medium),
                   ),
                 ],
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget detailCardService() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.h),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10.r),
-            child: Image.asset(
-              'assets/png/petycarecenter.png',
-              height: 50.h,
-              width: 50.w,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Cạo lông cho mèo - Shave Cats hair',
-                style: h6.copyWith(
-                    fontSize: 12.sp,
-                    color: AppColors.C343434,
-                    fontWeight: FontWeights.medium),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                'Giá từ 400.000đ',
-                style: h6.copyWith(
-                    fontSize: 10.sp,
-                    color: AppColors.C929292,
-                    fontWeight: FontWeights.regular),
-              ),
-            ],
-          )
-        ],
       ),
     );
   }

@@ -7,6 +7,8 @@ import 'package:pets/app/core/model/user.dart';
 import 'package:pets/app/data/repository/repository.dart';
 import 'package:pets/app/modules/register/model/view_state.dart';
 
+import '../../../core/widget/loading_dialog.dart';
+
 class RegisterController extends BaseController {
   final formKey = GlobalKey<FormState>();
   final Repository _repository = Get.find(tag: (Repository).toString());
@@ -40,17 +42,17 @@ class RegisterController extends BaseController {
 
     int result = 0;
 
-    await callDataService(
-      registerUser,
-      onSuccess: (int response) {
-        result = response;
-      },
-    );
+    await callDataService(registerUser, onStart: () {
+      LoadingDialog().showLoadingDialog(Get.context!);
+    }, onSuccess: (int response) {
+      result = response;
+    }, onComplete: () {});
     await Future.delayed(const Duration(seconds: 2));
 
     pageLoading = false.obs;
 
     if (result == 201) {
+      Get.back();
       state.value = ViewState.registerSuccess;
     }
   }

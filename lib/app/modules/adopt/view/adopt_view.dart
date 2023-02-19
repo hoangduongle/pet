@@ -23,13 +23,7 @@ class _AdoptScreenState extends State<AdoptScreen> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: AppColors.C656565,
-              ),
-              onPressed: () {},
-            ),
+            leading: Container(),
             title: Column(
               children: [
                 Text(
