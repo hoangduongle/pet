@@ -6,6 +6,7 @@ import 'package:pets/app/core/model/service.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/font_weights.dart';
 import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/modules/main/controller/main_controller.dart';
 import 'package:pets/app/modules/serivce/controller/service_controller.dart';
 import 'package:pets/app/modules/serivce/widgets/BuildIndicator.dart';
 import 'package:pets/app/modules/serivce/widgets/cardPet.dart';
@@ -67,11 +68,17 @@ class ServiceScreen extends GetView<ServiceController> {
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: CircleAvatar(
-              radius: 20.r,
-              backgroundImage: const AssetImage('assets/png/avatar.png'),
+            child: InkWell(
+              onTap: () {
+                MainController mainController = Get.find<MainController>();
+                mainController.changeTab(3);
+              },
+              child: CircleAvatar(
+                radius: 20.r,
+                backgroundImage: const AssetImage('assets/png/avatar.png'),
+              ),
             ),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(

@@ -50,19 +50,4 @@ class ItemDetailController extends BaseController {
         ),
         1);
   }
-
-  void addServicetoCart() {
-    CartController cartController = Get.find<CartController>();
-    cartController.addService(
-        Service(
-          categoryId: 1,
-          description: '',
-          id: 0,
-          isCareService: false,
-          name: '',
-          price: 100000,
-          shopId: 1,
-        ),
-        1);
-  }
 }

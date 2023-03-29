@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pets/app/core/values/app_colors.dart';
 import 'package:pets/app/core/values/text_styles.dart';
+import 'package:pets/app/modules/main/controller/main_controller.dart';
 
 class AppBarButton extends StatelessWidget {
   const AppBarButton({super.key});
@@ -50,11 +52,17 @@ class AppBarButton extends StatelessWidget {
       actions: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: CircleAvatar(
-            radius: 25.r,
-            backgroundImage: const AssetImage('assets/png/avatar.png'),
+          child: InkWell(
+            onTap: () {
+              MainController mainController = Get.find<MainController>();
+              mainController.changeTab(3);
+            },
+            child: CircleAvatar(
+              radius: 20.r,
+              backgroundImage: const AssetImage('assets/png/avatar.png'),
+            ),
           ),
-        )
+        ),
       ],
     );
   }

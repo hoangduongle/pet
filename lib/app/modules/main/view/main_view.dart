@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pets/app/modules/adopt/view/adopt_view.dart';
 import 'package:pets/app/modules/main/controller/main_controller.dart';
+import 'package:pets/app/modules/menu/view/menu_view.dart';
 import 'package:pets/app/modules/serivce/view/service_view.dart';
 import 'package:pets/app/modules/shopping/view/shopping_view.dart';
 
@@ -16,9 +17,7 @@ class MainScreen extends GetView<MainController> {
     ServiceScreen(),
     AdoptScreen(),
     ShoppingScreen(),
-    Text(
-      'Index 3: Menu',
-    ),
+    MenuScreen()
   ];
 
   @override

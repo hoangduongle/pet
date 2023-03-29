@@ -62,17 +62,18 @@ class CartController extends BaseController {
 
   get total {
     String x;
-    double y = 0;
+    double y = 0, result = 0;
     try {
       x = _service.entries
           .map((service) => service.key.price * service.value)
           .toList()
           .reduce((value, element) => value + element)
           .toString();
-      y = double.parse(x);
+      result = double.parse(x);
     } catch (e) {
       y;
     }
+    y = result;
     return y;
   }
 
@@ -111,7 +112,8 @@ class CartController extends BaseController {
         Get.back();
         removeAllSerivce();
         Get.to(() => SuccessOther());
-        Future.delayed(const Duration(seconds: 3), () => Get.toNamed(Routes.MAIN));
+        Future.delayed(
+            const Duration(seconds: 3), () => Get.toNamed(Routes.MAIN));
       } else {
         Get.back();
       }
@@ -134,4 +136,8 @@ class CartController extends BaseController {
     );
     return result;
   }
+
+
+
 }
+
